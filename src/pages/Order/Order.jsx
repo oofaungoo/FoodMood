@@ -7,7 +7,6 @@ const Order = () => {
     return (
         <main>
             <Sidebar />
-            <div>lวัสดจ้า</div>
             <Outlet />
         </main>
     );
