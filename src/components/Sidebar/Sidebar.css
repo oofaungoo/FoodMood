@@ -1,7 +1,6 @@
-/* src/Sidebar.css */
-
 .sidebar {
-    width: 215px;
+    width: 23vh;            /* ถ้าเป็น ipad ต้องใช้ประมาณ 15 vh */
+    max-width: 23vh;
     height: 100vh;
     background-color: var(--white-color);
     display: flex;
@@ -13,7 +12,7 @@
 }
 
 .sidebar.collapsed {
-    width: 80px;
+    width: 8vh;
 }
 
 .sidebar .sidebar-header {
@@ -43,7 +42,7 @@
     align-items: center;
     padding: 8px 14px;
     margin-top: 10px;
-    color: var(--grey-color);
+    color: var(--dark-grey-color);
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -55,9 +54,9 @@
 }
 
 .sidebar ul li:hover {
-    background-color: #e0e7ff;
+    background-color: #e0e7ff;      /* ไม่ได้กำหนดสีลงใน root เพราะเป็นสีที่ไม่ได้ใช้บ่อย */
     color: #007bff;
-    border-radius: 8px;
+    border-radius: 26px;
 }
 
 .sidebar ul li svg {
@@ -85,78 +84,4 @@
 
 .sidebar-logout-button:hover {
     background-color: #ff7878;
-}
-
-.sidebar.collapsed .sidebar-logout-button {
-    display: flex;
-    justify-content: center;
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 60px;
-    }
-
-    .sidebar.expanded {
-        width: 200px;
-    }
-
-    .sidebar.collapsed {
-        width: 60px;
-    }
-
-    .sidebar ul li {
-        font-size: 14px;
-    }
-
-    .sidebar ul li svg {
-        margin-right: 5px;
-    }
-
-    .sidebar-logout-button {
-        padding: 8px 16px;
-    }
-
-    .sidebar .toggle-button {
-        font-size: 20px;
-    }
-
-    .sidebar .fw-5.fs-24.text-blue {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sidebar {
-        width: 50px;
-    }
-
-    .sidebar.expanded {
-        width: 150px;
-    }
-
-    .sidebar.collapsed {
-        width: 50px;
-    }
-
-    .sidebar ul li {
-        font-size: 12px;
-    }
-
-    .sidebar ul li svg {
-        margin-right: 3px;
-    }
-
-    .sidebar-logout-button {
-        padding: 6px 12px;
-    }
-
-    .sidebar .toggle-button {
-        font-size: 18px;
-    }
-
-    .sidebar .fw-5.fs-24.text-blue {
-        font-size: 18px;
-    }
 }

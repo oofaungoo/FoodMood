@@ -21,8 +21,8 @@ const MenuItemDetail = ({ selectedItem }) => {
                 ))}
             </ul>
             <div className="menu-action-buttons">
-                <button className='edit-button'>แก้ไขรายละเอียด</button>
-                <button className='delete-button'>ลบเมนูทิ้ง</button>
+                <button className='blue-button'>แก้ไขรายละเอียด</button>
+                <button className='red-button'>ลบเมนูทิ้ง</button>
             </div>
         </div>
     );

@@ -9,8 +9,10 @@
   --light-blue-color: #e3eeff;
   --black-color: #000000;
   --white-color: #fff;
-  --grey-color: #777777;
-  --light-grey-color: #F5F5F5;
+  --dark-grey-color: #777777;
+  --grey-color: #B2B2B2;
+  --grey-input: #eeeeee;
+  --grey-background: #F5F5F5;
 }
 
 *{
@@ -20,7 +22,7 @@
 }
 html{
   font-size: 10px;
-  background-color: var(--light-grey-color);
+  background-color: var(--grey-background);
 }
 body{
   font-size: 16px;
@@ -52,14 +54,14 @@ input{
 }
 /* backgrounds */
 .bg-white{background-color: var(--white-color);}
-.bg-light-grey{background-color: var(--light-grey-color);}
+.bg-light-grey{background-color: var(--grey-background);}
 
 /* text */
-.text-black{color: var(--black-color);}
-.text-grey{color: var(--grey-color)}
-.text-white{color: var(--white-color);}
-.text-blue{color: var(--dark-blue-color);}
 .text-center{text-align: center;}
+.text-black{color: var(--black-color);}
+.text-blue{color: var(--dark-blue-color);}
+.text-dark-grey{color: var(--dark-grey-color)}
+.text-white{color: var(--white-color);}
 
 /* font weights */
 .fw-3{font-weight: 300;}
@@ -107,4 +109,29 @@ input{
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+/* Button */
+.blue-button {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border: 1px solid var(--blue-color);
+  padding: 8px 13px;
+  border-radius: 20px;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+.red-button {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--red-color);
+  background-color: var(--white-color);
+  border: 1px solid var(--red-color);
+  padding: 8px 13px;
+  border-radius: 20px;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
 }

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HiPlusCircle } from "react-icons/hi";
 import './AddNewMenu.css';
 
 const AddNewMenu = ({ onSave, onCancel }) => {
+
+    const [imagePreview, setImagePreview] = useState(null);
+
+    // Handle file input change
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);  // Set the base64 image data as the preview
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className="menu-details fs-18">
             <form onSubmit={onSave}>
@@ -19,10 +34,23 @@ const AddNewMenu = ({ onSave, onCancel }) => {
                     </select>
                 </div>
 
-                <div className='upload-img'>
-                    <HiPlusCircle className='fs-60' />
-                    เพิ่มเมนูใหม่
+                <div className='upload-img' onClick={() => document.getElementById('fileInput').click()}>
+                    {imagePreview ? (
+                        <img src={imagePreview} alt="Uploaded" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                        <>
+                            <HiPlusCircle className='fs-60' />
+                            อัปโหลดรูปภาพ
+                        </>
+                    )}
                 </div>
+                <input
+                    id="fileInput"
+                    type="file"
+                    style={{ display: 'none' }}  // Hide the input element
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                />
                 <div>
                     <label >หมวดหมู่:</label>
                     <select id="category" name="category" className='form-option'>
@@ -32,7 +60,7 @@ const AddNewMenu = ({ onSave, onCancel }) => {
                 </div>
                 <div>
                     <label>ขนาด:</label>
-                    <select id="size" name="size" className='form-option'> 
+                    <select id="size" name="size" className='form-option'>
                         <option value="s">เล็ก</option>
                         <option value="m">กลาง</option>
                         <option value="l">ใหญ่</option>
@@ -46,9 +74,9 @@ const AddNewMenu = ({ onSave, onCancel }) => {
                     <label htmlFor="quantity">จำนวน:</label>
                     <input type="number" id="quantity" name="quantity" placeholder="จำนวน" defaultValue="500" />
                 </div>
-                <div className="form-buttons">
-                    <button type="submit" className="submit-button">บันทึก</button>
-                    <button type="button" className="cancel-button" onClick={onCancel}>ยกเลิก</button>
+                <div className="menu-action-buttons">
+                    <button type="submit" className="blue-button">บันทึก</button>
+                    <button type="button" className="red-button" onClick={onCancel}>ยกเลิก</button>
                 </div>
             </form>
         </div >

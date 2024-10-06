@@ -19,7 +19,7 @@ const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
                     >
                         <img src={item.image} alt={item.name} />
                         <div className='fs-18 text-black'>{item.name}</div>
-                        <div className='fs-15 text-grey'>{item.sizes.join('/')}</div>
+                        <div className='fs-15 text-dark-grey'>{item.sizes.join('/')}</div>
                     </div>
                 ))}
             </div>

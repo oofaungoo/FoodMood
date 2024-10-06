@@ -1,0 +1,41 @@
+.dashboard-container {
+    padding: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filters button.active-filter {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.charts {
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+.best-selling {
+    margin-top: 20px;
+}
+
+.best-selling ul {
+    list-style: none;
+    padding: 0;
+}
+
+.best-selling li {
+    margin: 5px 0;
+}
