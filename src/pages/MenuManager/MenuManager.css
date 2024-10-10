@@ -5,15 +5,6 @@
 }
 
 /* กล่องกลาง (กล่องใส่ menu list) */
-
-.menu-list-container {
-    width: 75%;
-    height: calc(100vh); 
-    overflow-y: auto; /* Enable vertical scrolling */
-    background-color: var(--white-color);
-    padding: 20px;
-    border-radius: 8px;
-}
 .menu-list {
     display: flex;
     flex-wrap: wrap;

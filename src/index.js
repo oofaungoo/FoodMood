@@ -15,11 +15,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}>
-          <Route path='Create-Order' element={<OrderCreate />} />
+          <Route path='CreateOrder' element={<OrderCreate />} />
           <Route path='Order' element={<Order />} />
           <Route path='Dashboard' element={<Dashboard />} />
-          <Route path='Menu-Manager' element={<MenuManager />} />
-          <Route path='User-Manager' element={<UserManager />} />
+          <Route path='MenuManager' element={<MenuManager />} />
+          <Route path='UserManager' element={<UserManager />} />
         </Route>
       </Routes>
     </BrowserRouter>

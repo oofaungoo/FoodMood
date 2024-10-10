@@ -3,7 +3,7 @@ import { HiPlusSm } from "react-icons/hi";
 
 const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
     return (
-        <div className="menu-list-container">      {/* กล่องพื้นหลังสีขาวตรงกลาง */}
+        <div className="middle-box">
             <div className="menu-list">
                 <div onClick={onAddNewMenu}>
                     <div className={`add-menu-list text-white ${selectedItem?.name === 'เพิ่มเมนูใหม่' ? 'selected' : ''}`}>

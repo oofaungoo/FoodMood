@@ -19,7 +19,7 @@ const UserManager = () => {
     );
 
     return (
-        <div className="results-container">
+        <div className="middle-box">
             <div className="search-container">
                 <input
                     type="text"

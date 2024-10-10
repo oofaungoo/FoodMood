@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 import { HiViewGrid, HiTable, HiDatabase, HiUserGroup, HiDocumentReport, HiLogout, HiInbox, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
-
 const Sidebar = () => {
-    const [activeMenu, setActiveMenu] = useState('สร้างออเดอร์');
+    const location = useLocation();
+    const [activeMenu, setActiveMenu] = useState('');
     const [isExpanded, setIsExpanded] = useState(true);
+
+    const adminMenu = [
+        { to: '/CreateOrder', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
+        { to: '/Order', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
+        { to: '/', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> }, // เติมลิงก์ด้วย
+        { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
+        { to: '/Dashboard', label: 'Dashboard', icon: <HiTable /> },
+        { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <HiDatabase /> },
+        { to: '/UserManager', label: 'จัดการผู้ใช้', icon: <HiUserGroup /> },
+    ];
 
     const handleMenuClick = (menu) => {
         setActiveMenu(menu);
@@ -15,6 +25,15 @@ const Sidebar = () => {
     const toggleSidebar = () => {
         setIsExpanded(!isExpanded);
     };
+
+    // Use useEffect to update activeMenu based on the current URL
+    useEffect(() => {
+        const currentPath = location.pathname;
+        const activeItem = adminMenu.find(item => item.to === currentPath);
+        if (activeItem) {
+            setActiveMenu(activeItem.label);
+        }
+    }, [location.pathname, adminMenu]);
 
     return (
         <div className={`sidebar ${isExpanded ? 'expanded' : 'collapsed'}`} id='sidebar'>
@@ -27,42 +46,13 @@ const Sidebar = () => {
                 </button>
             </div>
             <ul>
-                <Link to='/Create-Order'>
-                    <li className={activeMenu === 'สร้างออเดอร์' ? 'active' : ''} onClick={() => handleMenuClick('สร้างออเดอร์')}>
-                        <HiViewGrid /> {isExpanded && 'สร้างออเดอร์'}
-                    </li>
-                </Link>
-                <Link to='/Order'>
-                    <li className={activeMenu === 'ออร์เดอร์ปัจจุบัน' ? 'active' : ''} onClick={() => handleMenuClick('ออร์เดอร์ปัจจุบัน')}>
-                        <HiViewGrid /> {isExpanded && 'ออร์เดอร์ปัจจุบัน'}
-                    </li>
-                </Link>
-                <Link to='/'> {/* เติมด้วยนะ */}
-                    <li className={activeMenu === 'จัดการวัตถุดิบ' ? 'active' : ''} onClick={() => handleMenuClick('จัดการวัตถุดิบ')}>
-                        <HiInbox /> {isExpanded && 'จัดการวัตถุดิบ'}
-                    </li>
-                </Link>
-                <Link to='/'> {/* เติมด้วยนะ */}
-                    <li className={activeMenu === 'รายงาน' ? 'active' : ''} onClick={() => handleMenuClick('รายงาน')}>
-                        <HiDocumentReport /> {isExpanded && 'รายงาน'}
-                    </li>
-                </Link>
-                <Link to='/'>
-                    <li className={activeMenu === 'Dashboard' ? 'active' : ''} onClick={() => handleMenuClick('Dashboard')}>
-                        <HiTable /> {isExpanded && 'Dashboard'}
-                    </li>
-                </Link>
-                <Link to='/Menu-Manager'>
-                    <li className={activeMenu === 'จัดการเมนูอาหาร' ? 'active' : ''} onClick={() => handleMenuClick('จัดการเมนูอาหาร')}>
-                        <HiDatabase /> {isExpanded && 'จัดการเมนูอาหาร'}
-                    </li>
-                </Link>
-                <Link to='/User-Manager'>
-                    <li className={activeMenu === 'จัดการผู้ใช้' ? 'active' : ''} onClick={() => handleMenuClick('จัดการผู้ใช้')}>
-                        <HiUserGroup /> {isExpanded && 'จัดการผู้ใช้'}
-                    </li>
-                </Link>
-
+                {adminMenu.map((item) => (
+                    <Link to={item.to} key={item.label}>
+                        <li className={activeMenu === item.label ? 'active' : ''} onClick={() => handleMenuClick(item.label)}>
+                            {item.icon} {isExpanded && item.label}
+                        </li>
+                    </Link>
+                ))}
             </ul>
             <button className="sidebar-logout-button fs-16 text-white">
                 <HiLogout className='icon' /> {isExpanded && 'ออกจากระบบ'}

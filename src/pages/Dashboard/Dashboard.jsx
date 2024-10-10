@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';  
-//เป็นตัวสำหรับทำกราฟต่าง ๆ https://recharts.org/en-US/api
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import './Dashboard.css';
+
+import Food from '../../images/food.jpg';
+import Drink from '../../images/drink.jpg';
+import Fruit from '../../images/fruit.jpg';
+import Appetizer from '../../images/Appetizer.jpg';
 
 const Dashboard = () => {
     const [selectedCategory, setSelectedCategory] = useState('all');
 
     const menuData = [
-        { name: 'ไก่ย่าง', sales: 5000, category: 'main' },
-        { name: 'ชาเขียว', sales: 3000, category: 'drinks' },
-        { name: 'สตอร์เบอร์รี่เค้ก', sales: 2000, category: 'desserts' },
-        { name: 'ข้าวโพดอบเนย', sales: 4000, category: 'appetizers' },
+        { name: 'ไก่ย่าง', sales: 5000, category: 'main', image: Food },
+        { name: 'ชาเขียว', sales: 3000, category: 'drinks', image: Drink },
+        { name: 'สตอร์เบอร์รี่เค้ก', sales: 2000, category: 'desserts', image: Fruit },
+        { name: 'ข้าวโพดอบเนย', sales: 4000, category: 'appetizers', image: Appetizer },
+    ];
+
+    const ingredientData = [
+        { name: 'Chicken', purchased: 300, used: 250 },
+        { name: 'Tea Leaves', purchased: 150, used: 120 },
+        { name: 'Strawberries', purchased: 200, used: 180 },
+        { name: 'Corn', purchased: 100, used: 90 },
     ];
 
     const filterOptions = [
@@ -29,7 +40,6 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            
             <h1>Menu Dashboard</h1>
             <div className="filters">
                 {filterOptions.map(option => (
@@ -74,13 +84,30 @@ const Dashboard = () => {
                 </div>
             </div>
 
+            <div className="ingredient-chart">
+                <h2>Ingredients: Purchased vs Used</h2>
+                <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={ingredientData}>
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="purchased" fill="#8884d8" name="Purchased" />
+                        <Bar dataKey="used" fill="#82ca9d" name="Used" />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
+
             <div className="best-selling">
                 <h2>Best-Selling Items</h2>
-                <ul>
+                <ul className="best-selling-list">
                     {filteredMenuData
                         .sort((a, b) => b.sales - a.sales)
                         .map(item => (
-                            <li key={item.name}>{item.name} - {item.sales} ฿</li>
+                            <li key={item.name}>
+                                <img src={item.image} alt={item.name} className="food-image" />
+                                <span>{item.name} - {item.sales} ฿</span>
+                            </li>
                         ))}
                 </ul>
             </div>
