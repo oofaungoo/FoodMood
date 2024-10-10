@@ -12,7 +12,6 @@ const MenuManager = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [showAddMenu, setShowAddMenu] = useState(false);
 
-    // Fake database for frontend test.
     const [menuItems, setMenuItems] = useState([
         {
             name: 'ไก่ย่าง',
@@ -55,21 +54,18 @@ const MenuManager = () => {
         setShowAddMenu(false);
     };
 
-        return (
-            <div className="menu-manager-container">
-                <Sidebar />
-                <main className="menu-manager">
-                    <MenuList
-                        menuItems={menuItems}
-                        onMenuClick={handleMenuClick}
-                        onAddNewMenu={toggleAddMenu}
-                        selectedItem={selectedItem}
-                    />
-                    {showAddMenu ? <AddNewMenu onSave={handleSaveNewMenu} onCancel={() => setShowAddMenu(false)} /> : null}
-                    {selectedItem && <MenuItemDetail selectedItem={selectedItem} />}
-                </main>
-            </div>
-        );
+    return (
+        <div className='container'>
+            <MenuList
+                menuItems={menuItems}
+                onMenuClick={handleMenuClick}
+                onAddNewMenu={toggleAddMenu}
+                selectedItem={selectedItem}
+            />
+            {showAddMenu ? <AddNewMenu onSave={handleSaveNewMenu} onCancel={() => setShowAddMenu(false)} /> : null}
+            {selectedItem && <MenuItemDetail selectedItem={selectedItem} />}
+        </div>
+    );
 };
 
 export default MenuManager;

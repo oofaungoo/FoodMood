@@ -31,8 +31,11 @@ body{
 }
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+.main-content {
+  flex-grow: 1; /* Make this section take up the remaining space */
+  overflow-y: auto;
+  background-color: #f4f4f4; /* Light background to contrast with sidebar */
 }
 
 /* resets */
@@ -104,11 +107,6 @@ input{
 }
 .grid{
   display: grid;
-}
-.container{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
 
 /* Button */

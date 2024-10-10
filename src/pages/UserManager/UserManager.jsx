@@ -13,29 +13,26 @@ const UserManager = () => {
 
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Filter the data based on the search query
+    // ตัวค้นหา (query)
     const filteredData = data.filter(item =>
         item.id.includes(searchQuery) || item.name.includes(searchQuery)
     );
 
     return (
-        <div className='menu-manager-container'>
-            <Sidebar />
-            <div className="results-container">
-                <div className="search-container">
-                    <input
-                        type="text"
-                        className="search-input"
-                        placeholder="ค้นรายชื่อ / ID"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <button className="search-button">ค้นหา</button>
-                </div>
-
-                {/* Use the ResultsTable component */}
-                <UserTable filteredData={filteredData} />
+        <div className="results-container">
+            <div className="search-container">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="ค้นรายชื่อ / ID"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button className="search-button">ค้นหา</button>
             </div>
+
+            {/* Use the ResultsTable component */}
+            <UserTable filteredData={filteredData} />
         </div>
     );
 };

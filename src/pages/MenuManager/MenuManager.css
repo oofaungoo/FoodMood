@@ -1,7 +1,3 @@
-.menu-manager-container {
-    display: flex;
-}
-
 .menu-manager {
     display: flex;
     margin-left: 10px;
@@ -16,6 +12,7 @@
     overflow-y: auto; /* Enable vertical scrolling */
     background-color: var(--white-color);
     padding: 20px;
+    border-radius: 8px;
 }
 .menu-list {
     display: flex;
