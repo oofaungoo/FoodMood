@@ -19,7 +19,7 @@ const AddNewMenu = ({ onSave, onCancel }) => {
     };
 
     return (
-        <div className="menu-details fs-18">
+        <div className="right-box fs-18">
             <form onSubmit={onSave}>
                 <div className='fs-24 fw-5 text-center'>เพิ่มเมนูใหม่</div>
                 <div>

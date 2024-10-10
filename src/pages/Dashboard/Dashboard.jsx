@@ -39,79 +39,83 @@ const Dashboard = () => {
     const totalRevenue = filteredMenuData.reduce((acc, item) => acc + item.sales, 0);
 
     return (
-        <div className="dashboard-container">
-            <h1>Menu Dashboard</h1>
-            <div className="filters">
-                {filterOptions.map(option => (
-                    <button
-                        key={option.value}
-                        onClick={() => setSelectedCategory(option.value)}
-                        className={selectedCategory === option.value ? 'active-filter' : ''}
-                    >
-                        {option.label}
-                    </button>
-                ))}
-            </div>
+        <>
+            <div className="middle-box">
+                <h1>Menu Dashboard</h1>
+                <div className="filters">
+                    {filterOptions.map(option => (
+                        <button
+                            key={option.value}
+                            onClick={() => setSelectedCategory(option.value)}
+                            className={selectedCategory === option.value ? 'active-filter' : ''}
+                        >
+                            {option.label}
+                        </button>
+                    ))}
+                </div>
 
-            <div className="charts">
-                <div className="bar-chart">
-                    <h2>Sales by Menu Item</h2>
+                <div className="charts">
+                    <div className="bar-chart">
+                        <h2>Sales by Menu Item</h2>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart data={filteredMenuData}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="sales" fill="#82ca9d" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+
+                    <div className="pie-chart">
+                        <h2>Total Revenue</h2>
+                        <PieChart width={300} height={300}>
+                            <Pie
+                                data={[{ name: 'Total Revenue', value: totalRevenue }]}
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={80}
+                                fill="#8884d8"
+                                dataKey="value"
+                            >
+                                <Cell fill="#8884d8" />
+                            </Pie>
+                        </PieChart>
+                    </div>
+                </div>
+
+                <div className="ingredient-chart">
+                    <h2>Ingredients: Purchased vs Used</h2>
                     <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={filteredMenuData}>
+                        <BarChart data={ingredientData}>
                             <XAxis dataKey="name" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="sales" fill="#82ca9d" />
+                            <Bar dataKey="purchased" fill="#8884d8" name="Purchased" />
+                            <Bar dataKey="used" fill="#82ca9d" name="Used" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
-
-                <div className="pie-chart">
-                    <h2>Total Revenue</h2>
-                    <PieChart width={300} height={300}>
-                        <Pie
-                            data={[{ name: 'Total Revenue', value: totalRevenue }]}
-                            cx="50%"
-                            cy="50%"
-                            outerRadius={80}
-                            fill="#8884d8"
-                            dataKey="value"
-                        >
-                            <Cell fill="#8884d8" />
-                        </Pie>
-                    </PieChart>
+            </div>
+            <div className='right-box'>
+                    <div className="best-selling">
+                        <h2>Best-Selling Items</h2>
+                        <ul className="best-selling-list">
+                            {filteredMenuData
+                                .sort((a, b) => b.sales - a.sales)
+                                .map(item => (
+                                    <li key={item.name}>
+                                        <img src={item.image} alt={item.name} className="food-image" />
+                                        <span>{item.name} - {item.sales} ฿</span>
+                                    </li>
+                                ))}
+                        </ul>
+                    </div>
                 </div>
-            </div>
+        </>
 
-            <div className="ingredient-chart">
-                <h2>Ingredients: Purchased vs Used</h2>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={ingredientData}>
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="purchased" fill="#8884d8" name="Purchased" />
-                        <Bar dataKey="used" fill="#82ca9d" name="Used" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
-
-            <div className="best-selling">
-                <h2>Best-Selling Items</h2>
-                <ul className="best-selling-list">
-                    {filteredMenuData
-                        .sort((a, b) => b.sales - a.sales)
-                        .map(item => (
-                            <li key={item.name}>
-                                <img src={item.image} alt={item.name} className="food-image" />
-                                <span>{item.name} - {item.sales} ฿</span>
-                            </li>
-                        ))}
-                </ul>
-            </div>
-        </div>
     );
 };
 

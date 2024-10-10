@@ -54,6 +54,16 @@ body {
   border-radius: 8px;
 }
 
+.right-box {
+  background-color: var(--white-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 43vh;
+  margin-left: 20px;
+  position: relative;  
+}
+
 /* resets */
 ul {
   list-style-type: none;
