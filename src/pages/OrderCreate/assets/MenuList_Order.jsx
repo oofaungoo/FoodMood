@@ -1,16 +1,9 @@
 import React from 'react';
-import { HiPlusSm } from "react-icons/hi";
 
-const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
+const MenuList_Order = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
     return (
         <div className="middle-box">
             <div className="menu-list">
-                <div onClick={onAddNewMenu}>
-                    <div className={`add-menu-list text-white ${selectedItem?.name === 'เพิ่มเมนูใหม่' ? 'selected' : ''}`}>
-                        <div> <HiPlusSm className='fs-60' /> </div>
-                        เพิ่มเมนูใหม่
-                    </div>
-                </div>
                 {menuItems.map((item, index) => (
                     <div
                         key={index}
@@ -27,4 +20,4 @@ const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
     );
 };
 
-export default MenuList;
+export default MenuList_Order;

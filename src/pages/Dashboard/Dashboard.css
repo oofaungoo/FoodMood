@@ -1,0 +1,152 @@
+.dashboard-container {
+    padding: 40px;
+    background-color: #f4f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filters button {
+    padding: 12px 25px;
+    border: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.filters button.active-filter {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.filters button:hover {
+    background-color: #d6d6d6;
+}
+
+.charts {
+    display: flex;
+    gap: 40px;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.bar-chart, .pie-chart {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 48%;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.best-selling {
+    margin-top: 40px;
+}
+
+.best-selling h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.best-selling ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.best-selling li {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.best-selling li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.best-selling li span {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+}
+
+.dashboard-container {
+    padding: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filters button.active-filter {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.charts {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.bar-chart, .pie-chart, .ingredient-chart {
+    width: 45%;
+}
+
+.best-selling {
+    margin-top: 30px;
+}
+
+.best-selling-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.best-selling-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.food-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}

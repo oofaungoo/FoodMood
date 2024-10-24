@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import './MenuManager.css';
 import Food from '../../images/food.jpg';
 import Drink from '../../images/drink.jpg';
@@ -11,6 +10,7 @@ import MenuList from './assets/MenuList';
 const MenuManager = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [showAddMenu, setShowAddMenu] = useState(false);
+
     const [menuItems, setMenuItems] = useState([
         {
             name: 'ไก่ย่าง',
@@ -54,18 +54,15 @@ const MenuManager = () => {
     };
 
     return (
-        <div className="menu-manager-container">
-            <Sidebar />
-            <main className="menu-manager">
-                <MenuList
-                    menuItems={menuItems}
-                    onMenuClick={handleMenuClick}
-                    onAddNewMenu={toggleAddMenu}
-                    selectedItem={selectedItem}
-                />
-                {showAddMenu ? <AddNewMenu onSave={handleSaveNewMenu} onCancel={() => setShowAddMenu(false)} /> : null}
-                {selectedItem && <MenuItemDetail selectedItem={selectedItem} />}
-            </main>
+        <div className='container'>
+            <MenuList
+                menuItems={menuItems}
+                onMenuClick={handleMenuClick}
+                onAddNewMenu={toggleAddMenu}
+                selectedItem={selectedItem}
+            />
+            {showAddMenu ? <AddNewMenu onSave={handleSaveNewMenu} onCancel={() => setShowAddMenu(false)} /> : null}
+            {selectedItem && <MenuItemDetail selectedItem={selectedItem} />}
         </div>
     );
 };

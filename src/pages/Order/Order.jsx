@@ -5,10 +5,9 @@ import './Order.css'
 
 const Order = () => {
     return (
-        <main>
-            <Sidebar />
-            <Outlet />
-        </main>
+        <>
+
+        </>
     );
 }
 

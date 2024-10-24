@@ -4,11 +4,12 @@ import { Outlet } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <main>
-            <Sidebar />
-            
-            <Outlet />
-        </main>
+        <div className="container">
+            <Sidebar /> {/* Sidebar stays consistent */}
+            <div className="main-content">
+                <Outlet /> {/* This is where MenuManager or other components load */}
+            </div>
+        </div>
     );
 }
 
