@@ -1,34 +1,3 @@
-.dashboard-container {
-    padding: 40px;
-    background-color: #f4f5f7;
-    font-family: 'Arial', sans-serif;
-}
-
-.filters {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.filters button {
-    padding: 12px 25px;
-    border: none;
-    background-color: #e0e0e0;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.filters button.active-filter {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.filters button:hover {
-    background-color: #d6d6d6;
-}
-
 .charts {
     display: flex;
     gap: 40px;
@@ -37,17 +6,9 @@
 }
 
 .bar-chart, .pie-chart {
-    background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 48%;
-}
-
-h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
 }
 
 .best-selling {
@@ -89,7 +50,6 @@ h2 {
 .best-selling li span {
     font-size: 16px;
     color: #555;
-    font-weight: bold;
 }
 
 .dashboard-container {
@@ -103,16 +63,22 @@ h2 {
 }
 
 .filters button {
+    font-family: inherit;
     padding: 10px 20px;
     border: none;
     background-color: #ccc;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .filters button.active-filter {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+}
+
+.filters button:hover {
+    background-color: var(--light-blue-color-border);
 }
 
 .charts {

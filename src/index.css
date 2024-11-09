@@ -11,7 +11,8 @@
   --white-color: #fff;
   --dark-grey-color: #777777;
   --grey-color: #B2B2B2;
-  --grey-input: #eeeeee;
+  --light-grey-color: #eee;
+  --grey-input: #eee;
   --grey-background: #F5F5F5;
 }
 
@@ -51,7 +52,6 @@ body {
   padding: 20px;
   border-radius: 8px;
   overflow-y: auto;
-  /* Enable vertical scrolling */
 }
 
 .right-box {
@@ -59,18 +59,25 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
+  height: calc(100vh);
   width: 43vh;
   margin-left: 20px;
   position: relative;
-  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-y: auto;
 }
 
 .right-box img {
-  width: 360px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin: 18px 0 18px 0 ;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin: 18px 0 18px 0;
+}
+
+.right-box-header {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* ทำให้ label กับ input เป็นคนละบรรทัด */
 }
 
 /* resets */
@@ -95,108 +102,40 @@ input {
 }
 
 /* backgrounds */
-.bg-white {
-  background-color: var(--white-color);
-}
-
-.bg-light-grey {
-  background-color: var(--grey-background);
-}
+.bg-white { background-color: var(--white-color); }
+.bg-light-grey { background-color: var(--grey-background); }
 
 /* text */
-.text-center {
-  text-align: center;
-}
-
-.text-black {
-  color: var(--black-color);
-}
-
-.text-blue {
-  color: var(--dark-blue-color);
-}
-
-.text-dark-grey {
-  color: var(--dark-grey-color)
-}
-
-.text-white {
-  color: var(--white-color);
-}
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.text-black { color: var(--black-color);        }
+.text-blue  { color: var(--dark-blue-color);    }
+.text-red   { color: var(--red-color);          }
+.text-dark-grey { color: var(--dark-grey-color);}
+.text-white { color: var(--white-color);        }
 
 /* font weights */
-.fw-3 {
-  font-weight: 300;
-}
-
-.fw-4 {
-  font-weight: 400;
-}
-
-.fw-5 {
-  font-weight: 500;
-}
-
-.fw-6 {
-  font-weight: 600;
-}
-
-.fw-7 {
-  font-weight: 700;
-}
-
-.fw-8 {
-  font-weight: 800;
-}
-
-.fw-9 {
-  font-weight: 900;
-}
+.fw-3 { font-weight: 300; }
+.fw-4 { font-weight: 400; }
+.fw-5 { font-weight: 500; }
+.fw-6 { font-weight: 600; }
+.fw-7 { font-weight: 700; }
+.fw-8 { font-weight: 800; }
+.fw-9 { font-weight: 900; }
 
 /* font sizes */
-.fs-13 {
-  font-size: 13px;
-}
-
-.fs-14 {
-  font-size: 14px;
-}
-
-.fs-15 {
-  font-size: 15px;
-}
-
-.fs-16 {
-  font-size: 16px;
-}
-
-.fs-17 {
-  font-size: 17px;
-}
-
-.fs-18 {
-  font-size: 18px;
-}
-
-.fs-20 {
-  font-size: 20px;
-}
-
-.fs-22 {
-  font-size: 22px;
-}
-
-.fs-24 {
-  font-size: 24px;
-}
-
-.fs-26 {
-  font-size: 26px;
-}
-
-.fs-60 {
-  font-size: 60px;
-}
+.fs-13 { font-size: 13px; }
+.fs-14 { font-size: 14px; }
+.fs-15 { font-size: 15px; }
+.fs-16 { font-size: 16px; }
+.fs-17 { font-size: 17px; }
+.fs-18 { font-size: 18px; }
+.fs-20 { font-size: 20px; }
+.fs-22 { font-size: 22px; }
+.fs-24 { font-size: 24px; }
+.fs-26 { font-size: 26px; }
+.fs-60 { font-size: 60px; }
 
 /* letter spacing */
 .ls-1 {
@@ -241,6 +180,10 @@ input {
   cursor: pointer;
 }
 
+.blue-button:hover {
+  background-color: var();
+}
+
 .red-button {
   font-family: inherit;
   font-size: 15px;
@@ -253,6 +196,17 @@ input {
   cursor: pointer;
 }
 
+.red-button:hover {
+  background-color: var();
+}
+
+.invisible-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
 .form-input {
   background-color: var(--grey-background);
   border-radius: 30px;
@@ -262,6 +216,7 @@ input {
   width: 80%;
   flex-direction: inline;
 }
+
 .form-option {
   border: solid 1px var(--grey-color);
   border-radius: 30px;
@@ -285,18 +240,23 @@ input {
   transition: background-color 0.3s, border-color 0.3s;
 }
 
+.option-box input[type="radio"] {
+  display: none;
+}
+
+.option-box:hover {
+  background-color: var(--light-blue-color-border);
+}
+
+.option-box.selected {
+  background-color: var(--blue-color);
+  border-color: var(--blue-color);
+  color: white;
+}
+
 .added-options {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.option-box.selected {
-  background-color: var(--blue-color); /* เปลี่ยนสีเมื่อถูกเลือก */
-  border-color: var(--blue-color);
-  color: white;
-}
-
-.option-box input[type="radio"] {
-  display: none; /* ซ่อน radio button */
-}

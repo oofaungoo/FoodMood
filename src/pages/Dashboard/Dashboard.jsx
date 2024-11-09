@@ -18,18 +18,18 @@ const Dashboard = () => {
     ];
 
     const ingredientData = [
-        { name: 'Chicken', purchased: 300, used: 250 },
-        { name: 'Tea Leaves', purchased: 150, used: 120 },
-        { name: 'Strawberries', purchased: 200, used: 180 },
-        { name: 'Corn', purchased: 100, used: 90 },
+        { name: 'ไก่ (ทุกส่วน)', purchased: 300, used: 250 },
+        { name: 'หมู (สับ)', purchased: 200, used: 240 },
+        { name: 'หมู (สันใน)', purchased: 150, used: 120 },
+        { name: 'ข้าวโพด', purchased: 100, used: 60 },
     ];
 
     const filterOptions = [
         { label: 'All', value: 'all' },
-        { label: 'Main Courses', value: 'main' },
-        { label: 'Desserts', value: 'desserts' },
+        { label: 'เมนูจานหลัก', value: 'main' },
+        { label: 'ของหวาน', value: 'desserts' },
         { label: 'Appetizers', value: 'appetizers' },
-        { label: 'Drinks', value: 'drinks' }
+        { label: 'Drinks', value: 'เครื่องดื่ม' }
     ];
 
     const filteredMenuData = selectedCategory === 'all'
@@ -39,7 +39,7 @@ const Dashboard = () => {
     const totalRevenue = filteredMenuData.reduce((acc, item) => acc + item.sales, 0);
 
     return (
-        <>
+        <div className='container'>
             <div className="middle-box">
                 <h1>Menu Dashboard</h1>
                 <div className="filters">
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="sales" fill="#82ca9d" />
+                                <Bar dataKey="sales" fill="#79adfc" />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -93,28 +93,28 @@ const Dashboard = () => {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="purchased" fill="#8884d8" name="Purchased" />
-                            <Bar dataKey="used" fill="#82ca9d" name="Used" />
+                            <Bar dataKey="purchased" fill="#f4b266" name="ซื้อมา" />
+                            <Bar dataKey="used" fill="#79adfc" name="ใช้ไป" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
             </div>
             <div className='right-box'>
-                    <div className="best-selling">
-                        <h2>Best-Selling Items</h2>
-                        <ul className="best-selling-list">
-                            {filteredMenuData
-                                .sort((a, b) => b.sales - a.sales)
-                                .map(item => (
-                                    <li key={item.name}>
-                                        <img src={item.image} alt={item.name} className="food-image" />
-                                        <span>{item.name} - {item.sales} ฿</span>
-                                    </li>
-                                ))}
-                        </ul>
-                    </div>
+                <div className="best-selling">
+                    <h2>Best-Selling Items</h2>
+                    <ul className="best-selling-list">
+                        {filteredMenuData
+                            .sort((a, b) => b.sales - a.sales)
+                            .map(item => (
+                                <li key={item.name}>
+                                    <img src={item.image} alt={item.name} className="food-image" />
+                                    <span>{item.name} - {item.sales} ฿</span>
+                                </li>
+                            ))}
+                    </ul>
                 </div>
-        </>
+            </div>
+        </div>
 
     );
 };

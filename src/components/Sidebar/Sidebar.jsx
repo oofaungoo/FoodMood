@@ -9,8 +9,8 @@ const Sidebar = () => {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const adminMenu = [
-        { to: '/CreateOrder', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
-        { to: '/Order', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
+        { to: '/OrderCreate', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
+        { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
         { to: '/', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> }, // เติมลิงก์ด้วย
         { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
         { to: '/Dashboard', label: 'Dashboard', icon: <HiTable /> },
