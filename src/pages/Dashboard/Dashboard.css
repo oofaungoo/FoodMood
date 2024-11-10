@@ -1,118 +1,129 @@
-.charts {
-    display: flex;
-    gap: 40px;
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
-.bar-chart, .pie-chart {
-    padding: 20px;
-    border-radius: 10px;
-    width: 48%;
-}
-
-.best-selling {
-    margin-top: 40px;
-}
-
-.best-selling h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.best-selling ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.best-selling li {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.best-selling li img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.best-selling li span {
-    font-size: 16px;
-    color: #555;
-}
-
-.dashboard-container {
-    padding: 20px;
-}
-
-.filters {
+/* Filters container */
+.filters, .time-filters {
     display: flex;
     gap: 10px;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
-.filters button {
-    font-family: inherit;
-    padding: 10px 20px;
-    border: none;
-    background-color: #ccc;
+/* Individual filter buttons */
+.filters button, .time-filters button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-.filters button.active-filter {
-    background-color: var(--blue-color);
-    color: var(--white-color);
+.filters button.active-filter, .time-filters button.active-filter {
+    background-color: #79adfc;
+    color: white;
 }
 
-.filters button:hover {
-    background-color: var(--light-blue-color-border);
-}
-
+/* Charts section */
 .charts {
     display: flex;
+    flex-direction: column;
     gap: 30px;
-    justify-content: space-between;
 }
 
-.bar-chart, .pie-chart, .ingredient-chart {
-    width: 45%;
+/* Styling for each chart box */
+.bar-chart, .line-chart, .ingredient-chart {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+/* Improved Styling for Best-Selling Menu Section */
+
+/* Best-selling menu box */
+.best-selling-right-box {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: 20px;
+    position: relative;
+    overflow-y: auto;
 }
 
-.best-selling {
-    margin-top: 30px;
+/* Best-selling menu title */
+.best-selling-right-box .right-box-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
+/* List styling */
 .best-selling-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin: 0;
 }
 
+/* Individual menu item styling */
 .best-selling-list li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 5px 0;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+    color: #444;
 }
 
-.food-image {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+/* Last item without border */
+.best-selling-list li:last-child {
+    border-bottom: none;
+}
+
+/* Menu item image */
+.best-selling-list img {
+    width: 60px;
+    height: 60px;
     border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Menu item details */
+.best-selling-list .fs-16 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+}
+
+.sales-revenue, .sales-quantity {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Bottom navigation bar for graphs - placed on the right */
+.graph-nav {
+    display: flex;
+    gap: 20px; /* Adds space between the buttons */
+    justify-content: center; /* Centers the buttons horizontally */
+    margin-top: 20px; /* Adds space above the navigation */
+}
+
+/* Individual navigation button styles */
+.graph-nav button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.graph-nav button.active {
+    background-color: #79adfc;
+    color: white;
 }

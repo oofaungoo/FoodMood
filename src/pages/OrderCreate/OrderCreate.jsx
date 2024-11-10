@@ -94,10 +94,6 @@ const OrderCreate = () => {
         setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     };
 
-    const handleQuantityChange = (e) => {
-        setQuantity(Math.max(1, Number(e.target.value)));
-    };
-
 
     const handleConfirmAdd = () => {
         if (selectedItem && selectedSize) {

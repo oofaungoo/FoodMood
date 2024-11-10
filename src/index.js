@@ -5,6 +5,7 @@ import './index.css';
 import Home from './pages/Home/Home';
 import OrderCreate from './pages/OrderCreate/OrderCreate';
 import OrderCheck from './pages/OrderCheck/OrderCheck';
+import IngredientManagement from './pages/IngredientManager/In2';
 import MenuManager from './pages/MenuManager/MenuManager';
 import UserManager from './pages/UserManager/UserManager';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -17,6 +18,7 @@ root.render(
         <Route path='/' element={<Home />}>
           <Route path='OrderCreate' element={<OrderCreate />} />
           <Route path='OrderCheck' element={<OrderCheck />} />
+          <Route path='IngredientManagement' element={<IngredientManagement/>} />
           <Route path='Dashboard' element={<Dashboard />} />
           <Route path='MenuManager' element={<MenuManager />} />
           <Route path='UserManager' element={<UserManager />} />

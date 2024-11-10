@@ -14,6 +14,7 @@ const AddNewMenu = ({ onCancel }) => {
     const [newLabel, setNewLabel] = useState('');
     const [newOption, setNewOption] = useState('');
     const [newSize, setNewSize] = useState('');
+    const [isOptionVisible, setIsOptionVisible] = useState(false);  // State to control visibility of option inputs
 
     // Handle image upload
     const handleImageUpload = (event) => {
@@ -68,27 +69,15 @@ const AddNewMenu = ({ onCancel }) => {
     return (
         <div className="right-box fs-18">
             <form onSubmit={handleSave}>
-                <h2 className="form-title">เพิ่มเมนูใหม่</h2>
+                <div className="right-box-header text-center fs-20 fw-5">เพิ่มเมนูใหม่</div>
                 <div className="form-group">
                     <label>ชื่อเมนู</label>
                     <input
                         type="text"
-                        placeholder="ชื่อเมนู"
-                        className="form-input"
+                        placeholder="เช่น ผัดกระเพรา"
                         value={menuName}
                         onChange={(e) => setMenuName(e.target.value)}
                     />
-                </div>
-                <div className="form-group">
-                    <label>สถานะ</label>
-                    <select
-                        className="form-select"
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                    >
-                        <option value="available">เปิดการขาย</option>
-                        <option value="unavailable">ปิดการขาย</option>
-                    </select>
                 </div>
                 <div className='upload-img' onClick={() => document.getElementById('fileInput').click()}>
                     {imagePreview ? (
@@ -118,63 +107,64 @@ const AddNewMenu = ({ onCancel }) => {
                         <option value="appetizer">ของทานเล่น</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label>ขนาด</label>
-                    <div className="size-boxes">
-                        {sizeOptions.map((size, index) => (
-                            <div key={index} className="option-box">{size}</div>
-                        ))}
+                <div className="form-group size-price-container">
+                    <div className="size-group">
+                        <label>ขนาด</label>
+                        <div className="size-boxes">
+                            {sizeOptions.map((size, index) => (
+                                <div key={index} className="option-box">{size}</div>
+                            ))}
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="เพิ่มขนาด"
+                            value={newSize}
+                            onChange={(e) => setNewSize(e.target.value)}
+                            className="form-input"
+                        />
+                        <button type="button" className="add-option-btn" onClick={handleAddSize} style={{marginBottom: '10px'}}>
+                            เพิ่มขนาด
+                        </button>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="เพิ่มขนาด"
-                        value={newSize}
-                        onChange={(e) => setNewSize(e.target.value)}
-                        className="form-input"
-                    />
-                    <button type="button" className="add-option-btn" onClick={handleAddSize}>
-                        เพิ่มขนาด
-                    </button>
+
+                    <div className="price-group">
+                        <label>ราคา</label>
+                        <input
+                            type="number"
+                            placeholder="ราคา"
+                            className="form-input"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </div>
                 </div>
+
+
                 <div className="form-group">
-                    <label>ราคา</label>
-                    <input
-                        type="number"
-                        placeholder="ราคา"
-                        className="form-input"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>จำนวน</label>
-                    <input
-                        type="number"
-                        placeholder="จำนวน"
-                        className="form-input"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>เพิ่มตัวเลือก</label>
-                    <input
-                        type="text"
-                        placeholder="ชื่อ Label"
-                        value={newLabel}
-                        onChange={(e) => setNewLabel(e.target.value)}
-                        className="form-input"
-                    />
-                    <input
-                        type="text"
-                        placeholder="ตัวเลือก"
-                        value={newOption}
-                        onChange={(e) => setNewOption(e.target.value)}
-                        className="form-input"
-                    />
-                    <button type="button" className="add-option-btn" onClick={handleAddOption}>
-                        เพิ่มตัวเลือก
-                    </button>
+                    <div className="add-option-label">
+                        <label style={{ marginTop: '8px', marginRight: '6px' }}>เพิ่มตัวเลือก</label>
+                        <button
+                            type="button"
+                            className="circle-plus-btn"
+                            onClick={() => setIsOptionVisible(!isOptionVisible)}
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    {isOptionVisible && (
+                        <div className="add-option-container">
+                            <input
+                                type="text"
+                                placeholder="ระดับความหวาน, ระดับความเผ็ด"
+                                value={newLabel}
+                                onChange={(e) => setNewLabel(e.target.value)}
+                            />
+                            <button type="button" className="add-option-btn" onClick={handleAddOption}>
+                                เพิ่มตัวเลือก
+                            </button>
+                        </div>
+                    )}
                 </div>
                 <div className="added-options">
                     {customOptions.map((item, index) => (
@@ -184,7 +174,7 @@ const AddNewMenu = ({ onCancel }) => {
                         </div>
                     ))}
                 </div>
-                <div className="menu-action-buttons">
+                <div >
                     <button type="submit" className="blue-button">บันทึก</button>
                     <button type="button" className="red-button" onClick={onCancel}>ยกเลิก</button>
                 </div>

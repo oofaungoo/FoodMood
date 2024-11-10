@@ -11,7 +11,7 @@ const Sidebar = () => {
     const adminMenu = [
         { to: '/OrderCreate', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
         { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
-        { to: '/', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> }, // เติมลิงก์ด้วย
+        { to: '/IngredientManagement', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> },
         { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
         { to: '/Dashboard', label: 'Dashboard', icon: <HiTable /> },
         { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <HiDatabase /> },

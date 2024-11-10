@@ -1,86 +1,102 @@
-.material-management-container {
-    padding: 20px;
-}
-
-.material-add-section {
+.filter-button-container {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
-.input-field {
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    width: 200px;
+.category-filter {
+    max-width: 60%;
 }
 
-.add-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 16px;
+.ingredient-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.ingredient-table th, .ingredient-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.ingredient-table th {
+    background-color: #f0f0f0;
+}
+
+.ingredient-table td {
+    background-color: #fafafa;
+}
+
+.ingredient-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-btn {
+    background: none;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.add-button:hover {
-    background-color: #45a049;
+.pagination {
+    display: flex;
+    gap: 12px;
+    margin-top: 1rem;
+    justify-content: flex-end;
 }
 
-.material-list-container {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.page-btn:hover {
+    opacity: 0.9;
 }
 
-.material-item {
+/* ตัวนี้ต้องลบด้วยนะ เราใช้ซ้ำ ค่อยใส่ใน index.css */
+.quantity-div {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    margin: 10px 0;
 }
 
-.material-unit {
-    font-size: 16px;
-    color: #666;
-}
-
-.adjust-button {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    border-radius: 4px;
+.quantity-left-btn {
+    margin-right: 14px;
     width: 40px;
     height: 40px;
-    font-size: 18px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    margin: 4px 0;
-    transition: background-color 0.3s ease;
-}
-
-.adjust-button:hover {
-    background-color: #1e88e5;
-}
-
-.history-button {
-    background-color: #888;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 4px;
+    color: #3f3f3f;
+    background-color: #d8d8d8;
     border: none;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 20px;
+    border-radius: 50%;
+    transition: background-color 1s;
 }
 
-.history-button:hover {
-    background-color: #777;
+.quantity-left-btn:disabled {
+    background-color: #f0f0f0; /* สีจางลง */
+    cursor: not-allowed;
+    color: #aaa; /* สีเทา */
+}
+
+.quantity-left-btn:hover {
+    background-color: var(--light-blue-color-border);
+}
+
+.quantity-right-btn {
+    margin-left: 14px;
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #3f3f3f;
+    background-color: #d8d8d8;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 1s;
+}
+
+.quantity-right-btn:hover {
+    background-color: var(--light-blue-color-border);
 }
