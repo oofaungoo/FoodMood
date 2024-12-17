@@ -13,11 +13,10 @@ const Sidebar = () => {
         { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
         { to: '/IngredientManagement', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> },
         { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
-        { to: '/Dashboard', label: 'Dashboard', icon: <HiTable /> },
         { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <HiDatabase /> },
         { to: '/UserManager', label: 'จัดการผู้ใช้', icon: <HiUserGroup /> },
     ];
-
+ 
     const handleMenuClick = (menu) => {
         setActiveMenu(menu);
     };

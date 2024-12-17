@@ -86,3 +86,28 @@
 .sidebar-logout-button:hover {
     background-color: #ff7878;
 }
+
+.mobile-toggle-button {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    background: var(--blue-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mobile Only */
+@media (max-width: 768px) {
+    .mobile-toggle-button {
+        display: flex;
+    }
+}
