@@ -4,17 +4,15 @@ import './AddNewMenu.css';
 
 const AddNewMenu = ({ onCancel }) => {
     const [menuName, setMenuName] = useState('');
-    const [status, setStatus] = useState('available');
     const [category, setCategory] = useState('mainDish');
-    const [price, setPrice] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [imagePreview, setImagePreview] = useState(null);
+    const [sizePrices, setSizePrices] = useState([]); // Array of size-price pairs
     const [customOptions, setCustomOptions] = useState([]);
-    const [sizeOptions, setSizeOptions] = useState([]);
+    const [newSize, setNewSize] = useState('');
+    const [newSizePrice, setNewSizePrice] = useState('');
     const [newLabel, setNewLabel] = useState('');
     const [newOption, setNewOption] = useState('');
-    const [newSize, setNewSize] = useState('');
-    const [isOptionVisible, setIsOptionVisible] = useState(false);  // State to control visibility of option inputs
+    const [isOptionVisible, setIsOptionVisible] = useState(false);
+    const [imagePreview, setImagePreview] = useState(null);
 
     // Handle image upload
     const handleImageUpload = (event) => {
@@ -26,20 +24,26 @@ const AddNewMenu = ({ onCancel }) => {
         }
     };
 
-    // Add custom option
-    const handleAddOption = () => {
-        if (newLabel && newOption) {
-            setCustomOptions([{ label: newLabel, option: newOption }, ...customOptions]);
-            setNewLabel('');
-            setNewOption('');
+    // Add size and price pair
+    const handleAddSizePrice = () => {
+        if (newSize && newSizePrice) {
+            setSizePrices([...sizePrices, { size: newSize, price: Number(newSizePrice) }]);
+            setNewSize('');
+            setNewSizePrice('');
         }
     };
 
-    // Add size option
-    const handleAddSize = () => {
-        if (newSize) {
-            setSizeOptions([newSize, ...sizeOptions]);
-            setNewSize('');
+    // Add custom option
+    const handleAddOption = () => {
+        if (newLabel && newOption) {
+            const existingLabel = customOptions.find(option => option.label === newLabel);
+            if (existingLabel) {
+                existingLabel.options.push(newOption);
+                setCustomOptions([...customOptions]);
+            } else {
+                setCustomOptions([...customOptions, { label: newLabel, options: [newOption] }]);
+            }
+            setNewOption('');
         }
     };
 
@@ -48,22 +52,19 @@ const AddNewMenu = ({ onCancel }) => {
         e.preventDefault();
 
         const formData = {
-            menuName,
-            status,
+            name: menuName,
             category,
-            price,
-            quantity,
-            sizes: sizeOptions,
-            options: customOptions.reduce((acc, curr) => {
-                if (!acc[curr.label]) {
-                    acc[curr.label] = [];
-                }
-                acc[curr.label].push(curr.option);
+            size_price: sizePrices.reduce((acc, curr) => {
+                acc[curr.size] = curr.price;
+                return acc;
+            }, {}),
+            option: customOptions.reduce((acc, curr) => {
+                acc[curr.label] = curr.options;
                 return acc;
             }, {})
         };
 
-        console.log('Form Data:', formData);
+        console.log('บันทึกข้อมูล:', formData);
     };
 
     return (
@@ -109,10 +110,12 @@ const AddNewMenu = ({ onCancel }) => {
                 </div>
                 <div className="form-group size-price-container">
                     <div className="size-group">
-                        <label>ขนาด</label>
+                        <label>ขนาดและราคา</label>
                         <div className="size-boxes">
-                            {sizeOptions.map((size, index) => (
-                                <div key={index} className="option-box">{size}</div>
+                            {sizePrices.map((item, index) => (
+                                <div key={index} className="option-box">
+                                    {item.size}: {item.price} บาท
+                                </div>
                             ))}
                         </div>
                         <input
@@ -122,24 +125,18 @@ const AddNewMenu = ({ onCancel }) => {
                             onChange={(e) => setNewSize(e.target.value)}
                             className="form-input"
                         />
-                        <button type="button" className="add-option-btn" onClick={handleAddSize} style={{marginBottom: '10px'}}>
-                            เพิ่มขนาด
-                        </button>
-                    </div>
-
-                    <div className="price-group">
-                        <label>ราคา</label>
                         <input
                             type="number"
                             placeholder="ราคา"
+                            value={newSizePrice}
+                            onChange={(e) => setNewSizePrice(e.target.value)}
                             className="form-input"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
                         />
+                        <button type="button" className="add-option-btn" onClick={handleAddSizePrice}>
+                            เพิ่มขนาดและราคา
+                        </button>
                     </div>
                 </div>
-
-
                 <div className="form-group">
                     <div className="add-option-label">
                         <label style={{ marginTop: '8px', marginRight: '6px' }}>เพิ่มตัวเลือก</label>
@@ -156,9 +153,15 @@ const AddNewMenu = ({ onCancel }) => {
                         <div className="add-option-container">
                             <input
                                 type="text"
-                                placeholder="ระดับความหวาน, ระดับความเผ็ด"
+                                placeholder="ชื่อหมวด เช่น ระดับความหวาน"
                                 value={newLabel}
                                 onChange={(e) => setNewLabel(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="ตัวเลือก เช่น 0, 25, 50"
+                                value={newOption}
+                                onChange={(e) => setNewOption(e.target.value)}
                             />
                             <button type="button" className="add-option-btn" onClick={handleAddOption}>
                                 เพิ่มตัวเลือก
@@ -170,11 +173,11 @@ const AddNewMenu = ({ onCancel }) => {
                     {customOptions.map((item, index) => (
                         <div key={index} className="custom-option">
                             <h4>{item.label}:</h4>
-                            <span>{item.option}</span>
+                            <span>{item.options.join(', ')}</span>
                         </div>
                     ))}
                 </div>
-                <div >
+                <div>
                     <button type="submit" className="blue-button">บันทึก</button>
                     <button type="button" className="red-button" onClick={onCancel}>ยกเลิก</button>
                 </div>
