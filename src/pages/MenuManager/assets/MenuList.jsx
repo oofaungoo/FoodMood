@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HiPlusSm } from "react-icons/hi";
 
 const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState(''); // สำหรับฟิลเตอร์ประเภทเมนู
+
+    // ฟิลเตอร์เมนูตามคำค้นหาและประเภท
+    const filteredMenuItems = menuItems.filter(item => {
+        const matchesCategory = categoryFilter ? item.category === categoryFilter : true;
+        const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
+
+    // ตัวเลือกประเภทเมนู
+    const categories = ['อาหารตามสั่ง', 'อาหารอีสาน', 'เครื่องดื่ม', 'ของหวาน', 'อื่น ๆ'];
+
     return (
         <div className="middle-box">
+            {/* ฟิลเตอร์ประเภทเมนู - กดเพื่อเลือก */}
+            <div className="category-filter">
+                {categories.map((category, index) => (
+                    <button
+                        key={index}
+                        className={`category-button ${categoryFilter === category ? 'active' : ''}`}
+                        onClick={() => setCategoryFilter(categoryFilter === category ? '' : category)} // คลิกเพื่อเลือกหรือยกเลิกการเลือก
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+
+            {/* ฟิลด์ค้นหาพร้อมไอคอน */}
+            <div className="search-bar">
+                <input
+                    type="text"
+                    placeholder="ค้นหาเมนู"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
+            
             <div className="menu-list">
                 <div onClick={onAddNewMenu}>
                     <div className={`add-menu-list text-white ${selectedItem?.name === 'เพิ่มเมนูใหม่' ? 'selected' : ''}`}>
@@ -11,7 +47,9 @@ const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
                         เพิ่มเมนูใหม่
                     </div>
                 </div>
-                {menuItems.map((item, index) => (
+
+                {/* แสดงเมนูที่กรอง */}
+                {filteredMenuItems.map((item, index) => (
                     <div
                         key={index}
                         className={`menu-item ${selectedItem?.name === item.name ? 'selected' : ''}`}

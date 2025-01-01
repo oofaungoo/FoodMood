@@ -1,17 +1,10 @@
-.menu-manager {
-    display: flex;
-    margin-left: 10px;
-    width: 100%;
-}
-
-/* กล่องกลาง (กล่องใส่ menu list) */
 .menu-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: 0.5rem;
 }
-/* Menu list */
 
+/* เพิ่มเมนูใหม่ */
 .add-menu-list {
     width: 200px;
     height: 195px;
@@ -31,10 +24,11 @@
     background-color: var(--blue-color);
 }
 
-.menu-item {            /* กล่องแสดงเมนูแต่ละอัน */
+/* กล่องแสดงเมนูแต่ละอัน */
+.menu-item {            
     width: 200px;
     border: 1px solid #ddd;
-    padding: 14px;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
     background-color: var(--white-color);
@@ -50,7 +44,7 @@
 .menu-item img {
     width: 100%;
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     border-radius: 5px;
 }
 
@@ -102,4 +96,36 @@
     left: 20px;
     right: 20px;
 }
+
+.category-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.category-button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.category-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
 

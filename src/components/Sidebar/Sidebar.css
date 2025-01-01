@@ -84,7 +84,7 @@
 }
 
 .sidebar-logout-button:hover {
-    background-color: #ff7878;
+    background-color: var(--dark-red-color);
 }
 
 .mobile-toggle-button {

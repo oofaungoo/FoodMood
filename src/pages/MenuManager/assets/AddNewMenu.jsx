@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { HiPlusCircle } from "react-icons/hi";
+import { FaRegTrashAlt } from "react-icons/fa";
 import './AddNewMenu.css';
+import IngredientPopup from './IngredientPopup';
 
 const AddNewMenu = ({ onCancel }) => {
     const [menuName, setMenuName] = useState('');
@@ -13,6 +15,13 @@ const AddNewMenu = ({ onCancel }) => {
     const [newOption, setNewOption] = useState('');
     const [isOptionVisible, setIsOptionVisible] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
+
+    const [ingredients, setIngredients] = useState([]); // Array of ingredients
+    const [newIngredient, setNewIngredient] = useState('');
+    const [newIngredientQty, setNewIngredientQty] = useState('');
+    
+    // State to control popup visibility
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
 
     // Handle image upload
     const handleImageUpload = (event) => {
@@ -27,7 +36,7 @@ const AddNewMenu = ({ onCancel }) => {
     // Add size and price pair
     const handleAddSizePrice = () => {
         if (newSize && newSizePrice) {
-            setSizePrices([...sizePrices, { size: newSize, price: Number(newSizePrice) }]);
+            setSizePrices([{ size: newSize, price: Number(newSizePrice) }, ...sizePrices]);
             setNewSize('');
             setNewSizePrice('');
         }
@@ -41,10 +50,26 @@ const AddNewMenu = ({ onCancel }) => {
                 existingLabel.options.push(newOption);
                 setCustomOptions([...customOptions]);
             } else {
-                setCustomOptions([...customOptions, { label: newLabel, options: [newOption] }]);
+                setCustomOptions([{ label: newLabel, options: [newOption] }, ...customOptions]);
             }
             setNewOption('');
         }
+    };
+
+    // Add ingredient
+    const handleAddIngredient = () => {
+        if (newIngredient && newIngredientQty) {
+            setIngredients([{ name: newIngredient, qty: newIngredientQty }, ...ingredients]);
+            setNewIngredient('');
+            setNewIngredientQty('');
+        }
+    };
+
+    // Remove ingredient
+    const handleRemoveIngredient = (index) => {
+        const updatedIngredients = [...ingredients];
+        updatedIngredients.splice(index, 1);
+        setIngredients(updatedIngredients);
     };
 
     // Handle form submit
@@ -61,17 +86,24 @@ const AddNewMenu = ({ onCancel }) => {
             option: customOptions.reduce((acc, curr) => {
                 acc[curr.label] = curr.options;
                 return acc;
-            }, {})
+            }, {}),
+            ingredients
         };
 
         console.log('บันทึกข้อมูล:', formData);
     };
 
+    // Show/Hide IngredientPopup
+    const handleIngredientPopup = () => {
+        setIsPopupVisible(!isPopupVisible);
+    };
+
     return (
-        <div className="right-box fs-18">
+        <div className="right-box">
             <form onSubmit={handleSave}>
-                <div className="right-box-header text-center fs-20 fw-5">เพิ่มเมนูใหม่</div>
-                <div className="form-group">
+                <div className="right-box-header text-center fs-18 fw-5">เพิ่มเมนูใหม่</div>
+
+                <div>
                     <label>ชื่อเมนู</label>
                     <input
                         type="text"
@@ -97,49 +129,59 @@ const AddNewMenu = ({ onCancel }) => {
                     accept="image/*"
                     onChange={handleImageUpload}
                 />
-                <div className="form-group">
+                <div className="right-box-header">
                     <label>หมวดหมู่</label>
                     <select
                         className="form-select"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     >
-                        <option value="mainDish">เมนูจานหลัก</option>
                         <option value="appetizer">ของทานเล่น</option>
+                        <option value="alacarte">อาหารตามสั่ง</option>
+                        <option value="isaan">อาหารอีสาน</option>
+                        <option value="dessert">ของหวาน</option>
                     </select>
                 </div>
-                <div className="form-group size-price-container">
-                    <div className="size-group">
+
+                <div className="right-box-header">
+                    <div>
                         <label>ขนาดและราคา</label>
-                        <div className="size-boxes">
+                        <button
+                            className="manage-ingredients-btn"
+                            type="button"
+                            onClick={handleIngredientPopup}
+                        >
+                            จัดการวัตถุดิบ
+                        </button>
+                        <div>
                             {sizePrices.map((item, index) => (
                                 <div key={index} className="option-box">
-                                    {item.size}: {item.price} บาท
+                                    {item.size} : {item.price} บาท
                                 </div>
                             ))}
                         </div>
-                        <input
-                            type="text"
-                            placeholder="เพิ่มขนาด"
-                            value={newSize}
-                            onChange={(e) => setNewSize(e.target.value)}
-                            className="form-input"
-                        />
-                        <input
-                            type="number"
-                            placeholder="ราคา"
-                            value={newSizePrice}
-                            onChange={(e) => setNewSizePrice(e.target.value)}
-                            className="form-input"
-                        />
-                        <button type="button" className="add-option-btn" onClick={handleAddSizePrice}>
+                        <div className="size-price-inputs">
+                            <input
+                                type="text"
+                                placeholder="ขนาด"
+                                value={newSize}
+                                onChange={(e) => setNewSize(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="ราคา"
+                                value={newSizePrice}
+                                onChange={(e) => setNewSizePrice(e.target.value)}
+                            />
+                        </div>
+                        <button type="button" className="blue-button text-center" onClick={handleAddSizePrice}>
                             เพิ่มขนาดและราคา
                         </button>
                     </div>
                 </div>
-                <div className="form-group">
+                <div className="right-box-header">
                     <div className="add-option-label">
-                        <label style={{ marginTop: '8px', marginRight: '6px' }}>เพิ่มตัวเลือก</label>
+                        <label style={{ marginTop: '8px', marginRight: '6px' }}>ตัวเลือกพิเศษ</label>
                         <button
                             type="button"
                             className="circle-plus-btn"
@@ -148,12 +190,18 @@ const AddNewMenu = ({ onCancel }) => {
                             +
                         </button>
                     </div>
-
+                    <div>
+                        {customOptions.map((item, index) => (
+                            <div key={index} className="option-box">
+                                {item.label} : {item.options.join(', ')}
+                            </div>
+                        ))}
+                    </div>
                     {isOptionVisible && (
                         <div className="add-option-container">
                             <input
                                 type="text"
-                                placeholder="ชื่อหมวด เช่น ระดับความหวาน"
+                                placeholder="ชื่อหมวดหมู่ เช่น ระดับความหวาน"
                                 value={newLabel}
                                 onChange={(e) => setNewLabel(e.target.value)}
                             />
@@ -163,25 +211,21 @@ const AddNewMenu = ({ onCancel }) => {
                                 value={newOption}
                                 onChange={(e) => setNewOption(e.target.value)}
                             />
-                            <button type="button" className="add-option-btn" onClick={handleAddOption}>
+                            <button type="button" className="blue-button" onClick={handleAddOption}>
                                 เพิ่มตัวเลือก
                             </button>
                         </div>
                     )}
                 </div>
-                <div className="added-options">
-                    {customOptions.map((item, index) => (
-                        <div key={index} className="custom-option">
-                            <h4>{item.label}:</h4>
-                            <span>{item.options.join(', ')}</span>
-                        </div>
-                    ))}
-                </div>
-                <div>
+
+                <div style={{ marginTop: "10px" }}>
                     <button type="submit" className="blue-button">บันทึก</button>
                     <button type="button" className="red-button" onClick={onCancel}>ยกเลิก</button>
                 </div>
             </form>
+
+            {/* IngredientPopup should only show when isPopupVisible is true */}
+            {isPopupVisible && <IngredientPopup onClose={handleIngredientPopup} />}
         </div>
     );
 };

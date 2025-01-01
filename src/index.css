@@ -2,7 +2,7 @@
 
 :root {
   --red-color: #ff4b4b;
-  --dark-red-color: #F46666;
+  --dark-red-color: #ff7878;
   --dark-blue-color: #007bff;
   --blue-color: #64A2FF;
   --light-blue-color-border: #afcfff;
@@ -23,7 +23,7 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 16px;
   background-color: var(--grey-background);
 }
 
@@ -44,8 +44,6 @@ body {
   background-color: #f4f4f4;
   /* Light background to contrast with sidebar */
 }
-
-
 
 .middle-box {
   width: 75%;
@@ -260,7 +258,7 @@ input {
   padding: 8px 13px;
   border-radius: 20px;
   margin: 0 10px 10px 0;
-  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .blue-button:hover {
@@ -276,11 +274,12 @@ input {
   padding: 8px 13px;
   border-radius: 20px;
   margin: 0 10px 10px 0;
-  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .red-button:hover {
-  background-color: var();
+  background-color: var(--dark-red-color);
+  color: var(--white-color);
 }
 
 .invisible-btn {
@@ -288,18 +287,6 @@ input {
   border: none;
   cursor: pointer;
   font-family: inherit;
-}
-
-.form-input {
-  background-color: var(--grey-background);
-  border-radius: 30px;
-  padding: 8px 13px 8px 13px;
-  /* บน ขวา ล่าง ซ้าย */
-  margin: 0 0 10px 10px;
-  /* บน ขวา ล่าง ซ้าย */
-  font-size: 16px;
-  width: 80%;
-  flex-direction: inline;
 }
 
 .form-option {

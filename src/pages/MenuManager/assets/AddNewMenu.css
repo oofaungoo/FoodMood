@@ -2,61 +2,29 @@
     width: 100%;
     height: 160px;
     border-radius: 5px;
-    color: var(--dark-grey-color);  /* เปลี่ยนสีของ content ข้างใน ในที่นี้คือ Icon กับ Font */ 
+    color: var(--dark-grey-color);
     background-color: var(--grey-input);
-    margin: 6px 0 6px 0 ;
-    display: flex;  /* Enable Flexbox */
-    flex-direction: column;  /* ทำให้ content ข้างในแบ่งเป็น column */
-    justify-content: center;  /* Center items แนวตั้ง */
-    align-items: center;  /* Center items แนวนอน */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 .upload-img:hover {
     background-color: var(--blue-color);
     color: var(--white-color);
-    transition: background-color 1s; /* transition effect สำหรับ background และ border color ตามลำดับ*/
+    transition: background-color 1s;
 }
 
-.form-group {
-    margin: 5px 0 5px 0;
-    position: relative;
+.size-price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* ระยะห่างระหว่าง input */
 }
 
 label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     color: var(--dark-grey-color);
-}
-
-.form-input:focus {
-    border-color: var(--blue-color);
-}
-
-.form-select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid var(--light-grey-color);
-    font-size: 16px;
-}
-
-
-.size-boxes, .added-options {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.option-box {
-    font-size: 14px;
-    background-color: var(--white-color);
-    border: 1px solid #ddd;
-    padding: 8px 13px;
-    border-radius: 20px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .option-box:hover {
@@ -83,33 +51,6 @@ label {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
-}
-
-.blue-button, .red-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.blue-button {
-    background-color: var(--blue-color);
-    color: var(--white-color);
-}
-
-.blue-button:hover {
-    background-color: var(--blue-hover);
-}
-
-.red-button {
-    background-color: var(--red-color);
-    color: var(--white-color);
-}
-
-.red-button:hover {
-    background-color: var(--red-hover);
 }
 
 .custom-option h4 {
@@ -145,7 +86,7 @@ label {
 }
 
 .circle-plus-btn:hover {
-    background-color: #0056b3;
+    background-color: #399640;
 }
 
 .size-price-container {
@@ -155,12 +96,3 @@ label {
     border-bottom: 1px solid #ddd;
 }
 
-.size-group,
-.price-group {
-    flex: 1; /* Make both groups take equal space */
-}
-
-.size-group input,
-.price-group input {
-    width: 100%; /* Ensure inputs are full width of their containers */
-}
