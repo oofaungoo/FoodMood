@@ -1,0 +1,154 @@
+.cart-item-column {
+    padding: 6px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; /* ทำให้ label กับ input เป็นคนละบรรทัด */
+  }
+  
+    /* Dropdown Styles */
+    select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      background-color: #fff;
+      color: #333;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+    
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    
+    select option {
+      padding: 10px;
+    }
+    
+    /* Input Field */
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      font-size: 16px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    
+    input[type="text"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    
+    /* Cart Item List */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .quantity-box {
+      display: inline-block;
+      padding: 2px 8px;
+      background-color: #f2f2f2;
+      border: 1px solid var(--dark-grey-color);
+      border-radius: 4px;
+      color: var(--black-color);
+      font-size: 14px;
+      margin-right: 12px;
+    }
+  
+    /* ลักษณะของรายการสินค้า */
+  .cart-item-details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  /* การจัดกลุ่มข้อมูลเกี่ยวกับเมนู */
+  .item-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  /* ชื่อเมนู */
+  .item-name {
+    font-weight: 500;
+  }
+  
+  /* ขนาดและรายละเอียดเพิ่มเติม */
+  .item-size-note {
+    color: var(--grey-text);
+  }
+  
+  /* ราคาของเมนู */
+  .cart-item-price {
+  
+    text-align: right; /* ราคาอยู่ด้านขวา */
+  }
+  
+  .total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 10px 0;
+  }
+
+
+/*ปุ่มหลอก */
+.order-action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #f44336; /* Red color for cancel */
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+
+.ready-button {
+  background-color: #4caf50; /* Green color for ready */
+  color: white;
+}
+
+.ready-button:hover {
+  background-color: #388e3c;
+}
+
+/* ปุ่มกากบาท (X) */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--red-color);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.close-button:hover {
+  color: var(--dark-red-color); /* เปลี่ยนเป็นสีแดงเมื่อเอามือไปวางบนปุ่ม */
+}

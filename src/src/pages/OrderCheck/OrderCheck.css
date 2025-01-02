@@ -1,0 +1,91 @@
+
+.filter-status, .filter-category {
+    margin-bottom: 15px;
+}
+
+.filter-status span, .filter-category span {
+    font-weight: 500;
+    display: inline-block; /* Keep it inline with the buttons */
+    margin-right: 10px; /* Space between the label and buttons */
+}
+
+.bubble-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start; /* Align to the left, preventing wrapping */
+    flex-wrap: nowrap; /* Ensure no wrapping */
+    overflow: hidden; /* Prevent overflow if the content exceeds the container width */
+}
+
+.bubble {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    color: var(--dark-grey-color);
+    cursor: pointer;
+    transition: background-color 1s, color 0.2s;
+    white-space: nowrap; /* Prevent text from wrapping within the bubble */
+}
+
+.bubble:hover {
+    background-color: var(--light-grey-color);
+}
+
+.bubble.active {
+    background-color: var(--blue-color);
+    color: #fff;
+    border-color: none;
+}
+
+/* โชว์ออเดอร์ที่ลูกค้าสั่งมา (middle-box) */
+
+.order-list {
+    display: flex;
+    flex-wrap: wrap; /* ให้แสดงในหลายบรรทัดได้ */
+    gap: 15px; /* ระยะห่างระหว่าง items */
+    justify-content: flex-start; /* จัดเรียง items ทางซ้าย */
+}
+
+.order-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    width: 200px; /* กำหนดความกว้าง */
+    height: 150px; /* กำหนดความสูง */
+    display: flex;
+    flex-direction: column; /* จัดระเบียบเนื้อหาภายใน */
+    justify-content: center; /* จัดให้เนื้อหาตรงกลาง */
+    align-items: center; /* จัดให้อยู่กลาง */
+}
+
+.order-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Different background color for each order status */
+.status-1 {
+    border-left: 5px solid #ccc; /* ยังไม่เริ่ม */
+}
+
+.status-2 {
+    border-left: 5px solid #ffa500; /* กำลังทำ */
+}
+
+.status-3 {
+    border-left: 5px solid #28a745; /* พร้อมเสิร์ฟ */
+}
+
+.status-4 {
+    border-left: 5px solid #007bff; /* เสร็จสิ้น */
+}
+
+.status-5 {
+    border-left: 5px solid #dc3545; /* ยกเลิก */
+}
