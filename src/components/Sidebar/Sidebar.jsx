@@ -12,7 +12,7 @@ const Sidebar = () => {
         { to: '/OrderCreate', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
         { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
         { to: '/IngredientManagement', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> },
-        { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
+        // { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
         { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <HiDatabase /> },
         { to: '/UserManager', label: 'จัดการผู้ใช้', icon: <HiUserGroup /> },
     ];

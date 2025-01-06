@@ -82,10 +82,11 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
             <div>
                 <label>ตัวเลือกการรับอาหาร: </label>
                 <select value={option} onChange={handleOptionChange}>
-                    <option value="ยังไม่ระบุ">ยังไม่ระบุ</option>
-                    <option value="ทานที่ร้าน">ทานที่ร้าน</option>
-                    <option value="กลับบ้าน">กลับบ้าน</option>
-                    <option value="Delivery">Delivery</option>
+                    <option value="ยังไม่ระบุ">❓ ยังไม่ระบุ</option>
+                    <option value="ทานที่ร้าน">🍽️ ทานที่ร้าน</option>
+                    <option value="กลับบ้าน">🏠 กลับบ้าน</option>
+                    <option value="Delivery">🛵 Delivery</option>
+                    <option value="สั่งอาหารแบบไม่ต้องจ่าย">🎉 สั่งอาหารแบบไม่ต้องจ่าย</option>
                 </select>
             </div>
 

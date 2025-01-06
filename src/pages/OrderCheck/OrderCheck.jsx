@@ -4,45 +4,46 @@ import './OrderCheck.css';
 
 const OrderCheck = () => {
     const [orders, setOrders] = useState([
-        { 
+        {
             id: 41, status: 4, date: '2024-11-01', time: '10:30',
             items: [
                 { name: 'ข้าวผัด', quantity: 1, category: 'food', note: ['ไม่ใส่ผัก'] },
                 { name: 'ชาเขียว - ปั่น', quantity: 2, category: 'drink', note: [] }
             ]
         },
-        { 
-            id: 42, status: 3, date: '2024-11-01', time: '10:45', 
+        {
+            id: 42, status: 3, date: '2024-11-01', time: '10:45',
             items: [
                 { name: 'ส้มตำ', quantity: 1, category: 'food', note: [] },
                 { name: 'น้ำส้ม - ปั่น', quantity: 1, category: 'drink', note: [] }
             ]
         },
-        { 
+        {
             id: 43, status: 2, date: '2024-11-01', time: '11:00',
             items: [
                 { name: 'ข้าวมันไก่', quantity: 2, category: 'food', note: ['ขอจานใหญ่'] },
                 { name: 'น้ำมะนาว - ปั่น', quantity: 1, category: 'drink', note: ['ไม่หวาน'] }
             ]
         },
-        { 
-            id: 44, status: 2, date: '2024-11-02', time: '12:00', 
+        {
+            id: 44, status: 2, date: '2024-11-02', time: '12:00',
             items: [
                 { name: 'เอสเฟรสโซ่', quantity: 1, category: 'food', note: ['ปั่น', 'หวาน 50'] },
                 { name: 'ชาเย็น', quantity: 2, category: 'drink', note: ['ปั่น', 'หวาน 50'] }
             ]
         },
-        { 
-            id: 45, status: 1, date: '2024-11-02', time: '12:00', 
+        {
+            id: 45, status: 1, date: '2024-11-02', time: '12:00',
             items: [
                 { name: 'ข้าวขาหมู', quantity: 1, category: 'food', note: ['ราดน้ำจิ้ม'] },
                 { name: 'ชาเย็น', quantity: 2, category: 'drink', note: ['หวานปกติ'] }
             ]
-        },   
+        },
     ]);
     const [filterStatus, setFilterStatus] = useState(['all']);
     const [filterCategory, setFilterCategory] = useState('all');
     const [selectedOrder, setSelectedOrder] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const statusOptions = [
         { id: 'all', name: 'ทั้งหมด' },
@@ -98,37 +99,48 @@ const OrderCheck = () => {
     return (
         <div className='container'>
             <div className="middle-box">
-                {/* Status Filter */}
-                <div className="filter-status">
-                    <span>สถานะออเดอร์:</span>
-                    <div className="bubble-container">
+                <div>
+
+                    {/* Search Bar */}
+                    <div className='search-bar'>
+                        <input
+                            type='text'
+                            placeholder='ค้นหา (หมายเลขโต๊ะ หรือ หมายเลขออเดอร์)'
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                    
+                    {/* Status Filter */}
+                    <div className="filter-bubble-container">
+                        สถานะออเดอร์: 
                         {statusOptions.map(option => (
-                            <button
+                            <div
                                 key={option.id}
-                                className={`bubble ${filterStatus.includes(option.id) ? 'active' : ''}`}
+                                className={`filter-bubble ${filterStatus.includes(option.id) ? 'active' : ''}`}
                                 onClick={() => handleStatusChange(option.id)}
                             >
                                 {option.name}
-                            </button>
+                            </div>
                         ))}
                     </div>
                 </div>
 
-                {/* Category Filter */}
+                {/* Category Filter 
                 <div className="filter-category">
                     <span>หมวดหมู่อาหาร:</span>
-                    <div className="bubble-container">
+                    <div className="filter-bubble-container">
                         {categoryOptions.map(option => (
-                            <button
+                            <div
                                 key={option.id}
-                                className={`bubble ${filterCategory === option.id ? 'active' : ''}`}
+                                className={`filter-bubble ${filterCategory === option.id ? 'active' : ''}`}
                                 onClick={() => setFilterCategory(option.id)}
                             >
                                 {option.name}
-                            </button>
+                            </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
 
                 {/* Order List */}
                 <div className="order-list">
@@ -148,10 +160,10 @@ const OrderCheck = () => {
 
             {/* Display OrderDetail if an order is selected */}
             {selectedOrder && (
-                <div className='right-box'><OrderDetail 
-                    selectedOrder={selectedOrder} 
+                <div className='right-box'><OrderDetail
+                    selectedOrder={selectedOrder}
                     removeItem={removeItem}
-                    onClose={() => setSelectedOrder(null)} 
+                    onClose={() => setSelectedOrder(null)}
                 /></div>
             )}
         </div>

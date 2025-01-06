@@ -17,19 +17,6 @@ const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
 
     return (
         <div className="middle-box">
-            {/* ฟิลเตอร์ประเภทเมนู - กดเพื่อเลือก */}
-            <div className="category-filter">
-                {categories.map((category, index) => (
-                    <button
-                        key={index}
-                        className={`category-button ${categoryFilter === category ? 'active' : ''}`}
-                        onClick={() => setCategoryFilter(categoryFilter === category ? '' : category)} // คลิกเพื่อเลือกหรือยกเลิกการเลือก
-                    >
-                        {category}
-                    </button>
-                ))}
-            </div>
-
             {/* ฟิลด์ค้นหาพร้อมไอคอน */}
             <div className="search-bar">
                 <input
@@ -39,7 +26,19 @@ const MenuList = ({ menuItems, onMenuClick, onAddNewMenu, selectedItem }) => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </div>
-            
+            {/* ฟิลเตอร์ประเภทเมนู - กดเพื่อเลือก */}
+            <div className="filter-bubble-container">
+                {categories.map((category, index) => (
+                    <div
+                        key={index}
+                        className={`filter-bubble ${categoryFilter === category ? 'active' : ''}`}
+                        onClick={() => setCategoryFilter(categoryFilter === category ? '' : category)} // คลิกเพื่อเลือกหรือยกเลิกการเลือก
+                    >
+                        {category}
+                    </div>
+                ))}
+            </div>
+
             <div className="menu-list">
                 <div onClick={onAddNewMenu}>
                     <div className={`add-menu-list text-white ${selectedItem?.name === 'เพิ่มเมนูใหม่' ? 'selected' : ''}`}>
