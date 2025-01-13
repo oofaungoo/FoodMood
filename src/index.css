@@ -47,7 +47,7 @@ body {
 
 .middle-box {
   width: 75%;
-  height: calc(100vh);
+  height: 100vh;
   background-color: var(--white-color);
   padding: 20px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
-  height: calc(100vh);
+  height: 100vh;
   width: 43vh;
   margin-left: 20px;
   position: relative;
@@ -78,7 +78,6 @@ body {
   border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: column;
-  /* ทำให้ label กับ input เป็นคนละบรรทัด */
 }
 
 /* resets */
@@ -96,10 +95,110 @@ img {
   display: block;
 }
 
+/* Inout Styles */
 input {
-  border: none;
-  outline: 0;
   font-family: inherit;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+  
+input:focus {
+  border-color: var(--blue-color);
+  outline: none;
+}
+
+/* Dropdown Styles */
+select {
+  font-family: inherit;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+    
+select:focus {
+  border-color: var(--blue-color);
+  outline: none;
+}
+    
+select option {
+  padding: 10px;
+}
+
+/* กล่องตัวเลือกที่อยู่บรรทัดเดียวกัน */
+
+.option-box {
+  font-family: inherit;
+  font-size: 15px;
+  background-color: var(--white-color);
+  border: 1px solid #ddd;
+  padding: 8px 13px;
+  border-radius: 20px;
+  margin: 0 10px 0 0;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.option-box input[type="radio"] {
+  display: none;
+}
+
+.option-box:hover {
+  background-color: var(--light-blue-color-border);
+}
+
+.option-box.selected {
+  background-color: var(--blue-color);
+  border-color: var(--blue-color);
+  color: white;
+}
+
+/* ทำให้อยู่บรรทัดเดียวกัน */
+.option-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option-item {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option-item-column {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* ทำให้ label กับ input เป็นคนละบรรทัด */
+}
+
+.option-item:last-child {
+  border-bottom: none;
+}
+.option-item-column:last-child {
+  border-bottom: none;
+}
+
+.inline-elements {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px; /* Add some space between the elements */
+}
+
+.inline-elements select,
+.inline-elements input {
+  flex: 1; /* Allow the elements to resize proportionally if needed */
+  max-width: 200px; /* Optional: Set a max width for consistency */
 }
 
 /* backgrounds */
@@ -282,6 +381,23 @@ input {
   color: var(--white-color);
 }
 
+.green-button {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--white-color);
+  background-color: #53cf68;
+  border: 1px solid #53cf68;
+  padding: 8px 13px;
+  border-radius: 20px;
+  margin: 0 10px 10px 0;
+  transition: background-color 0.3s;
+}
+
+.green-button:hover {
+  background-color: #38a049;
+  color: var(--white-color);
+}
+
 .invisible-btn {
   background: transparent;
   border: none;
@@ -297,33 +413,6 @@ input {
   font-size: 16px;
   font-family: inherit;
   color: var(--dark-grey-color);
-}
-
-.option-box {
-  font-family: inherit;
-  font-size: 15px;
-  background-color: var(--white-color);
-  border: 1px solid #ddd;
-  padding: 8px 13px;
-  border-radius: 20px;
-  margin: 0 10px 10px 0;
-  cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.option-box input[type="radio"] {
-  display: none;
-}
-
-.option-box:hover {
-  background-color: var(--light-blue-color-border);
-}
-
-.option-box.selected {
-  background-color: var(--blue-color);
-  border-color: var(--blue-color);
-  color: white;
 }
 
 .added-options {

@@ -25,7 +25,35 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
     };
 
     const handleConfirmOrder = () => {
-        console.log('ยืนยันการสั่งซื้อ');
+        let finalTotal = totalPrice; // เริ่มต้นจาก totalPrice
+    
+        // ถ้าเลือก "สั่งแบบไม่ต้องจ่าย" ยอดรวมจะเป็น 0
+        if (option === "สั่งแบบไม่ต้องจ่าย") {
+            finalTotal = 0;
+        }
+    
+        // แปลงข้อมูลรายการอาหารให้อยู่ในรูปแบบ food_count_list
+        const foodCountList = cartItems.map(item => ({
+            name: item.name,
+            size: item.size,
+            quantity: item.quantity,
+        }));
+    
+        // กำหนด paid_option ตามตัวเลือกที่เลือก
+        let paidOption = paymentMethod; // เริ่มต้นเป็นวิธีการชำระเงินที่เลือก
+        if (option === "สั่งแบบไม่ต้องจ่าย") {
+            paidOption = "ไม่ต้องจ่าย";
+        }
+    
+        // แสดงผลใน console
+        console.log({
+            table_no: option === 'ทานที่ร้าน' ? tableNumber || 'ยังไม่ได้ระบุ' : null,
+            food_count_list: foodCountList,
+            cust_tel: option !== 'ทานที่ร้าน' ? phoneNumber || 'ยังไม่ได้ระบุ' : null,
+            paid_option: paidOption,
+        });
+    
+        console.log('ยอดรวม (Total):', finalTotal); // แสดงยอดรวม
     };
 
     return (
@@ -42,7 +70,7 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
                 </div>
 
                 {cartItems.map((item, index) => (
-                    <li className='cart-item-column' key={index}>
+                    <li className='cart-item-column' style={{ marginTop: "5px" }} key={index}>
                         <div className="cart-item-details">
                             {/* แสดงจำนวนสินค้าในกล่องสี่เหลี่ยม */}
                             <span className="quantity-box">
@@ -71,28 +99,28 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
                 ))}
 
             </ul>
-            <div className="total-price fs-18 fw-5">
-                <span>ราคารวม:</span>
-                <span className='right'>{totalPrice}</span>
+            <div className='right-box-header'>
+                <div className="total-price fs-18 fw-5">
+                    <span>ราคารวม:</span>
+                    <span className='right'>{totalPrice}</span>
+                </div>
             </div>
-            <div className='line' />
-
 
             {/* Dropdown สำหรับเลือกวิธีการรับอาหาร */}
-            <div>
+            <div style={{ marginTop: "10px" }}>
                 <label>ตัวเลือกการรับอาหาร: </label>
                 <select value={option} onChange={handleOptionChange}>
-                    <option value="ยังไม่ระบุ">❓ ยังไม่ระบุ</option>
+                    <option value="ยังไม่ระบุ">ยังไม่ระบุ</option>
                     <option value="ทานที่ร้าน">🍽️ ทานที่ร้าน</option>
                     <option value="กลับบ้าน">🏠 กลับบ้าน</option>
-                    <option value="Delivery">🛵 Delivery</option>
-                    <option value="สั่งอาหารแบบไม่ต้องจ่าย">🎉 สั่งอาหารแบบไม่ต้องจ่าย</option>
+                    <option value="Delivery">🚚 Delivery</option>
+                    <option value="สั่งแบบไม่ต้องจ่าย">🎉 สั่งแบบไม่ต้องจ่าย</option>
                 </select>
             </div>
 
             {/* Input สำหรับเบอร์โทรหรือหมายเลขโต๊ะ */}
             {option !== 'ทานที่ร้าน' && (
-                <div>
+                <div style={{ marginTop: "10px" }}>
                     <label>เบอร์โทร: </label>
                     <input
                         type="text"
@@ -104,7 +132,7 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
             )}
 
             {option === 'ทานที่ร้าน' && (
-                <div>
+                <div style={{ marginTop: "10px" }}>
                     <label>หมายเลขโต๊ะ: </label>
                     <input
                         type="text"
@@ -114,9 +142,9 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
                     />
                 </div>
             )}
-            
-            {/* ส่วนของยอดชำระเงิน */}
-            <div>
+
+            {/* ส่วนของยอดชำระเงิน 
+            <div style={{ marginTop: "10px" }}>
                 <label>สถานะการชำระเงิน: </label>
                 <select value={paymentStatus} onChange={handlePaymentStatusChange}>
                     <option value="ยังไม่จ่าย">ยังไม่จ่าย</option>
@@ -124,7 +152,8 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
                 </select>
             </div>
 
-            {paymentStatus === 'จ่ายเลย' && (
+            
+            paymentStatus === 'จ่ายเลย' && (
                 <div>
                     <label>เลือกวิธีการชำระเงิน: </label>
                     <select value={paymentMethod} onChange={handlePaymentMethodChange}>
@@ -137,12 +166,11 @@ const CartSummary = ({ cartItems, totalPrice, handleEditItem, handleRemoveItem }
             {paymentStatus === 'จ่ายเลย' && paymentMethod === 'โอนธนาคาร' && (
                 <div>
                     <p>กรุณาสแกน QR Code เพื่อชำระเงิน</p>
-                    {/* ใส่ QR Code ที่นี่ */}
                 </div>
             )}
+            */}
 
-            {/* ปุ่มยืนยันการสั่ง */}
-            <div>
+            <div style={{ marginTop: "10px" }}>
                 <button onClick={handleConfirmOrder} className="blue-button">ยืนยันการสั่ง</button>
             </div>
         </div>

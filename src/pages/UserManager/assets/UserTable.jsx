@@ -6,11 +6,9 @@ const UserTable = ({ data = [], onEdit }) => {
         <table className="ingredient-table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Username</th>
                     <th>ชื่อ</th>
-                    <th>ชื่อเล่น</th>
                     <th>ตำแหน่ง</th>
-                    <th>สถานะ</th>
                     <th>เบอร์โทร</th>
                     <th>Edit</th>
                 </tr>
@@ -20,9 +18,7 @@ const UserTable = ({ data = [], onEdit }) => {
                     <tr key={user.id}>
                         <td>{user.id}</td>
                         <td>{user.name}</td>
-                        <td>{user.nickname}</td>
                         <td>{user.roll}</td>
-                        <td>{user.status}</td>
                         <td>{user.phone || 'N/A'}</td>
                         <td>
                             <button className="edit-btn" onClick={() => onEdit(user)}>✏️</button>

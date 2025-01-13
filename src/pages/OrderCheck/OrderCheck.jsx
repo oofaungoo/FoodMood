@@ -102,10 +102,10 @@ const OrderCheck = () => {
                 <div>
 
                     {/* Search Bar */}
-                    <div className='search-bar'>
+                    <div className='search-bar' style={{ marginBottom: "10px" }}>
                         <input
                             type='text'
-                            placeholder='ค้นหา (หมายเลขโต๊ะ หรือ หมายเลขออเดอร์)'
+                            placeholder='ค้นหาออเดอร์ (ด้วยหมายเลขโต๊ะ หรือ หมายเลขออเดอร์)'
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -125,22 +125,6 @@ const OrderCheck = () => {
                         ))}
                     </div>
                 </div>
-
-                {/* Category Filter 
-                <div className="filter-category">
-                    <span>หมวดหมู่อาหาร:</span>
-                    <div className="filter-bubble-container">
-                        {categoryOptions.map(option => (
-                            <div
-                                key={option.id}
-                                className={`filter-bubble ${filterCategory === option.id ? 'active' : ''}`}
-                                onClick={() => setFilterCategory(option.id)}
-                            >
-                                {option.name}
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
 
                 {/* Order List */}
                 <div className="order-list">

@@ -65,17 +65,15 @@ const IngredientManager = () => {
     return (
         <div className='container'>
             <div className="middle-box">
-                <div className='fs-20 fw-5 text-center'>จัดการวัตถุดิบ</div>
-
                 <input
                     type="text"
-                    placeholder="ค้นหาด้วยชื่อ เช่น ไก่ หมู"
+                    placeholder="ค้นหาวัตถุดิบ"
                     className="search-bar"
                     onChange={handleSearch}
                     value={search}
                 />
 
-                <div className="filter-button-container">
+                <div className="filter-button-container" style={{ marginTop: '10px' }}>
                     <select className="category-filter" onChange={handleCategoryFilter} value={categoryFilter}>
                         <option value="">เลือก Category ที่ต้องการ</option>
                         <option value="เนื้อสัตว์">เนื้อสัตว์</option>

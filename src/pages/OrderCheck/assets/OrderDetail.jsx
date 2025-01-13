@@ -46,10 +46,10 @@ const OrderDetail = ({ selectedOrder, handleEditItem, handleRemoveItem, onClose 
 
             {/* Fake Buttons */}
             <div className="order-action-buttons">
-                <button className="action-button cancel-button" onClick={() => handleRemoveItem(selectedOrder.id)}>
+                <button className="red-button" onClick={() => handleRemoveItem(selectedOrder.id)}>
                     ยกเลิก
                 </button>
-                <button className="action-button ready-button" onClick={() => handleEditItem(selectedOrder.id)}>
+                <button className="green-button" onClick={() => handleEditItem(selectedOrder.id)}>
                     พร้อมเสิร์ฟ
                 </button>
             </div>

@@ -14,28 +14,32 @@ const MenuManager = () => {
     const [menuItems, setMenuItems] = useState([
         {
             name: 'ไก่ย่าง',
-            sizes: ['เล็ก', 'กลาง', 'ใหญ่'],
+            sizes: [
+                { name: 'เล็ก', price: 80, ingredients: ['ไก่ (1/4 ตัว) 150 g'] },
+                { name: 'กลาง', price: 120, ingredients: ['ไก่ (ครึ่งตัว) 300 g'] },
+                { name: 'ใหญ่', price: 180, ingredients: ['ไก่ (ทั้งตัว) 600 g'] },
+            ],
             category: 'เมนูจานหลัก, ของทานเล่น',
             image: Food,
-            price: '120',
-            ingredients: ['ไก่ (ครึ่งตัว) 300 g'],
         },
         {
             name: 'ชาเขียว',
-            sizes: ['ร้อน', 'เย็น', 'ปั่น'],
-            category: 'เมนูจานหลัก, ของทานเล่น',
+            sizes: [
+                { name: 'ร้อน', price: 50, ingredients: ['ชาเขียว 10 g', 'น้ำร้อน 100 ml'] },
+                { name: 'เย็น', price: 60, ingredients: ['ชาเขียว 10 g', 'นมสด 50 ml'] },
+                { name: 'ปั่น', price: 70, ingredients: ['ชาเขียว 10 g', 'นมสด 50 ml', 'น้ำแข็ง 100 g'] },
+            ],
+            category: 'เครื่องดื่ม',
             image: Drink,
-            price: '60',
-            ingredients: ['นม 50 ml', 'ชาเขียว 10 g'],
         },
         {
             name: 'สตอร์เบอรี่มรกต',
-            sizes: ['เมนูสเปเชียล'],
+            sizes: [
+                { name: 'เมนูสเปเชียล', price: 1000, ingredients: ['สตอร์เบอรี่ 500 g', 'มรกต 50 g'] },
+            ],
             category: 'ของทานเล่น, ผลไม้',
             image: Fruit,
-            price: '1000',
-            ingredients: [],
-        }
+        },
     ]);
 
     const handleMenuClick = (item) => {

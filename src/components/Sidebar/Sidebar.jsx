@@ -1,31 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
-import { HiViewGrid, HiTable, HiDatabase, HiUserGroup, HiDocumentReport, HiLogout, HiInbox, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { MdFastfood } from "react-icons/md";
+import { HiDocumentAdd, HiDocumentDuplicate, HiDatabase, HiUserGroup, HiLogout, HiInbox, HiChevronLeft, HiChevronRight, HiBell } from 'react-icons/hi';
 
 const Sidebar = () => {
     const location = useLocation();
     const [activeMenu, setActiveMenu] = useState('');
     const [isExpanded, setIsExpanded] = useState(true);
+    const [unreadNotifications, setUnreadNotifications] = useState(0); // Mock for unread notification count
 
     const adminMenu = [
-        { to: '/OrderCreate', label: 'สร้างออเดอร์', icon: <HiViewGrid /> },
-        { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiViewGrid /> },
+        { to: '/OrderCreate', label: 'สร้างออเดอร์', icon: <HiDocumentAdd /> },
+        { to: '/OrderCheck', label: 'ออร์เดอร์ปัจจุบัน', icon: <HiDocumentDuplicate /> },
         { to: '/IngredientManagement', label: 'จัดการวัตถุดิบ', icon: <HiInbox /> },
-        // { to: '/', label: 'รายงาน', icon: <HiDocumentReport /> }, // เติมลิงก์ด้วย
-        { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <HiDatabase /> },
+        { to: '/MenuManager', label: 'จัดการเมนูอาหาร', icon: <MdFastfood /> },
         { to: '/UserManager', label: 'จัดการผู้ใช้', icon: <HiUserGroup /> },
+        { 
+            to: '/Noti', 
+            label: 'การแจ้งเตือน', 
+            icon: <HiBell />,
+            badge: unreadNotifications > 0, // Show badge if there are unread notifications
+        }
     ];
  
     const handleMenuClick = (menu) => {
         setActiveMenu(menu);
+        if (menu === 'การแจ้งเตือน') {
+            setUnreadNotifications(0); // Mark all notifications as read when visiting the page
+        }
     };
 
     const toggleSidebar = () => {
         setIsExpanded(!isExpanded);
     };
 
-    // Use useEffect to update activeMenu based on the current URL
+    // Simulate fetching unread notifications from backend
+    useEffect(() => {
+        const fetchNotifications = () => {
+            // Mock: Random unread notifications count
+            const newUnreadCount = Math.floor(Math.random() * 10);
+            setUnreadNotifications(newUnreadCount);
+        };
+
+        fetchNotifications();
+        const interval = setInterval(fetchNotifications, 10000); // Simulate periodic updates
+        return () => clearInterval(interval);
+    }, []);
+
+    // Update active menu based on current URL
     useEffect(() => {
         const currentPath = location.pathname;
         const activeItem = adminMenu.find(item => item.to === currentPath);
@@ -47,8 +70,13 @@ const Sidebar = () => {
             <ul>
                 {adminMenu.map((item) => (
                     <Link to={item.to} key={item.label}>
-                        <li className={activeMenu === item.label ? 'active' : ''} onClick={() => handleMenuClick(item.label)}>
-                            {item.icon} {isExpanded && item.label}
+                        <li 
+                            className={`${activeMenu === item.label ? 'active' : ''} ${item.badge ? 'has-badge' : ''}`} 
+                            onClick={() => handleMenuClick(item.label)}
+                        >
+                            {item.icon} 
+                            {isExpanded && item.label}
+                            {item.badge && <span className="badge">{unreadNotifications}</span>}
                         </li>
                     </Link>
                 ))}

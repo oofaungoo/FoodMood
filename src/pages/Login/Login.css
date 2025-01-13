@@ -50,16 +50,6 @@ h2 {
     gap: 12px;
 }
 
-input {
-    padding: 10px;
-    border: 1px solid var(--input-border-color);
-    border-radius: 5px;
-    font-size: 14px;
-    color: var(--font-color);
-    background-color: white;
-    font-family: inherit;
-}
-
 button {
     padding: 10px;
     background-color: var(--primary-color);
