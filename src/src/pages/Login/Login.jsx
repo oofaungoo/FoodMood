@@ -30,16 +30,22 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <div className=''>เข้าสู่ระบบ</div>
+            <div className='fs-20 fw-5' style={{marginBottom: '10px'}}>เข้าสู่ระบบ</div>
             <div className="toggle-mode">
-                <div onClick={() => setIsAdminMode(true)}>
-                    <HiKey /> ผู้ดูแลระบบ 
+                <div
+                    className={`filter-bubble ${isAdminMode ? 'active' : ''}`}
+                    onClick={() => setIsAdminMode(true)}
+                >
+                    <HiKey /> ผู้ดูแลระบบ
                 </div>
-                <div onClick={() => setIsAdminMode(false)}  >
+                <div
+                    className={`filter-bubble ${!isAdminMode ? 'active' : ''}`}
+                    onClick={() => setIsAdminMode(false)}
+                >
                     พนักงาน <HiUser />
                 </div>
             </div>
-            <form onSubmit={handleLogin} className="login-form">
+            <form onSubmit={handleLogin} className="login-form" >
                 {isAdminMode ? (
                     <>
                         <input
@@ -68,8 +74,9 @@ const Login = () => {
                     />
                 )}
                 {error && <div className="error-message">{error}</div>}
-                <div className='blue-button'>ล็อกอิน</div>
+                
             </form>
+            <div className='blue-button' style={{marginTop: '20px'}}onClick={handleLogin}>ล็อกอิน</div>
         </div>
     );
 };
